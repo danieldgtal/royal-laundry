@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,9 +37,25 @@ Route::get('/about', [HomeController::class, 'about'])->name('home.about');
 
 Route::get('/services', [HomeController::class, 'services'])->name('home.services');
 
+Route::get('logout', [LogoutController::class, '__invoke'])->name('logout');
 
+/* User section */
+Route::group(['prefix' => 'user'], function (){
+  /*user dashboard */
+  Route::get('dashboard',[UserController::class, 'index'])->name('user.index');
+});
 
+/* Staff section */
+Route::group(['prefix' => 'staff'], function (){
+  /*user dashboard */
+  Route::get('dashboard',[UserController::class, 'index'])->name('staff.index');
+});
 
+/* Staff section */
+Route::group(['prefix' => 'owner'], function (){
+  /*user dashboard */
+  Route::get('dashboard',[UserController::class, 'index'])->name('owner.index');
+});
 
 
 

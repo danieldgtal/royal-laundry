@@ -4,6 +4,12 @@
     <div class="account-card-box">
         <div class="card mb-0">
             <div class="card-body p-4">
+                @if (session('success'))
+                    <div class="alert alert-success"><strong> {{ session('success') }} </strong></div>
+                @endif
+                @if (session('logout-success'))
+                    <div class="alert alert-success"><strong> {{ session('logout-success') }} </strong></div>
+                @endif
 
                 <div class="text-center">
                     <div class="my-3">
@@ -15,15 +21,15 @@
                     <h5 class="text-muted text-uppercase py-3 font-16">Sign In</h5>
                 </div>
 
-                <form action="#" class="mt-2">
-
+                <form method="POST" action="{{ route('login') }}" class="mt-2">
+                    @csrf
                     <div class="form-group mb-3">
-                        <input class="form-control" type="text" required="" placeholder="Enter your username">
+                        <input class="form-control" type="text" placeholder="Enter your username" required>
                     </div>
 
                     <div class="form-group mb-3">
-                        <input class="form-control" type="password" required="" id="password"
-                            placeholder="Enter your password">
+                        <input class="form-control" type="password" id="password" placeholder="Enter your password"
+                            required>
                     </div>
 
                     <div class="form-group mb-3">

@@ -26,6 +26,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
         'password',
     ];
 
@@ -58,4 +59,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    // protected static function boot()
+    // {
+    //   parent::boot();
+
+    //   static::created(function ($user){
+    //     $customer = new Customer;
+    //     // $customer->user
+    //   });
+    // }
 }

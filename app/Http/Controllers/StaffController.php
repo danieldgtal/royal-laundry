@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 class StaffController extends Controller
-{
+{ 
+    public function __construct()
+    {
+      $this->middleware('staff')->only(['create','edit','update','destroy']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +17,7 @@ class StaffController extends Controller
      */
     public function index()
     {
-        return view('owner.dashboard');
+        return view('staff.dashboard');
     }
 
     /**

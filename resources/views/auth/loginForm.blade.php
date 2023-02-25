@@ -10,6 +10,12 @@
                 @if (session('logout-success'))
                     <div class="alert alert-success"><strong> {{ session('logout-success') }} </strong></div>
                 @endif
+                @error('email')
+                    <span class="alert alert-danger text-center" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+
 
                 <div class="text-center">
                     <div class="my-3">
@@ -24,13 +30,15 @@
                 <form method="POST" action="{{ route('login') }}" class="mt-2">
                     @csrf
                     <div class="form-group mb-3">
-                        <input class="form-control" type="text" placeholder="Enter your username" required>
+                        <input class="form-control" name="email" type="email" value="{{ old('email') }}"
+                            placeholder="Enter your email" required autofocus>
                     </div>
 
                     <div class="form-group mb-3">
-                        <input class="form-control" type="password" id="password" placeholder="Enter your password"
-                            required>
+                        <input class="form-control" name="password" type="password" id="password"
+                            placeholder="Enter your password" required>
                     </div>
+
 
                     <div class="form-group mb-3">
                         <div class="custom-control custom-checkbox">

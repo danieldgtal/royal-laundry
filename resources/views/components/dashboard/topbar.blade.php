@@ -148,7 +148,7 @@
             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                 <!-- item-->
                 <div class="dropdown-header noti-title">
-                    <h6 class="text-overflow text-white m-0">Welcome Firstname</h6>
+                    <h6 class="text-overflow text-white m-0">{{ Auth::user()->name }}</h6>
                 </div>
 
                 <!-- item-->
@@ -166,10 +166,13 @@
                 <div class="dropdown-divider"></div>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <i class="mdi mdi-logout-variant"></i>
-                    <span>Logout</span>
-                </a>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="dropdown-item notify-item">
+                        <i class="mdi mdi-logout-variant"></i>
+                        <span>Logout</span>
+                    </button>
+                </form>
             </div>
         </li>
     </ul>

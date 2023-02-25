@@ -1,10 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\StaffController;
+use App\Http\Controllers\CustomAuthenticatedSessionController;
+// use App\Http\Controllers\LogoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,24 +40,37 @@ Route::get('/about', [HomeController::class, 'about'])->name('home.about');
 
 Route::get('/services', [HomeController::class, 'services'])->name('home.services');
 
-Route::get('logout', [LogoutController::class, '__invoke'])->name('logout');
+/* Authentication */
+Route::post('/login',[CustomAuthenticatedSessionController::class,'login'])
+  ->name('login');
+Route::get('/login', [CustomAuthenticatedSessionController::class, 'create'])
+  ->middleware('guest')->name('login');
+Route::post('/logout', [CustomAuthenticatedSessionController::class, 'logout'])
+  ->middleware('auth')->name('logout');
+//Redirect user from default dashboard to specific user dashboard
+Route::get('/redirect', [CustomAuthenticatedSessionController::class, 'redirectTo'])
+  ->middleware(['auth']);
 
+
+// Route::get('logout', [LogoutController::class, '__invoke'])->name('logout');
+
+// Route::post('/login', [AuthController::class,'login']);
 /* User section */
-Route::group(['prefix' => 'user'], function (){
+Route::group(['prefix' => 'user', 'middleware' => 'user'], function (){
   /*user dashboard */
-  Route::get('dashboard',[UserController::class, 'index'])->name('user.index');
+  Route::get('dashboard',[UserController::class, 'index'])->name('user.dashboard');
 });
 
 /* Staff section */
-Route::group(['prefix' => 'staff'], function (){
+Route::group(['prefix' => 'staff','middleware' => 'staff'], function (){
   /*user dashboard */
-  Route::get('dashboard',[UserController::class, 'index'])->name('staff.index');
+  Route::get('dashboard',[StaffController::class, 'index'])->name('staff.dashboard');
 });
 
-/* Staff section */
-Route::group(['prefix' => 'owner'], function (){
+/* Owner section */
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
   /*user dashboard */
-  Route::get('dashboard',[UserController::class, 'index'])->name('owner.index');
+  Route::get('dashboard',[AdminController::class, 'index'])->name('admin.dashboard');
 });
 
 

@@ -49,14 +49,14 @@ Route::post('/logout', [CustomAuthenticatedSessionController::class, 'logout'])
   ->middleware('auth')->name('logout');
 //Redirect user from default dashboard to specific user dashboard
 Route::get('/redirect', [CustomAuthenticatedSessionController::class, 'redirectTo'])
-  ->middleware(['auth']);
+  ->middleware(['auth','verified']);
 
 
 // Route::get('logout', [LogoutController::class, '__invoke'])->name('logout');
 
 // Route::post('/login', [AuthController::class,'login']);
 /* User section */
-Route::group(['prefix' => 'user', 'middleware' => 'user'], function (){
+Route::group(['prefix' => 'user', 'middleware' => ['auth','verified']], function (){
   /*user dashboard */
   Route::get('dashboard',[UserController::class, 'index'])->name('user.dashboard');
 });

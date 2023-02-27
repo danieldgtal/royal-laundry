@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('firstname');
             $table->string('lastname');
+            $table->string('gender')->nullable();
             $table->string('email')->unique();
+            $table->string('password');
             $table->unsignedBigInteger('branch_id');
             $table->unsignedBigInteger('staff_id');
             $table->timestamps();

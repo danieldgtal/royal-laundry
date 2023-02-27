@@ -2,7 +2,6 @@
 
 namespace App\Actions\Fortify;
 
-use App\Http\Controllers\LogoutController;
 use App\Models\User;
 use App\Models\Customer;
 use DateTime;
@@ -11,7 +10,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
-// use Illuminate\Auth\MustVerifyEmail;
 
 class CreateNewUser implements CreatesNewUsers
 {   
@@ -84,7 +82,7 @@ class CreateNewUser implements CreatesNewUsers
         $this->successMessage = 'Registration successful! Please log in to continue.';
 
         // Redirect user to the login page
-        return redirect()->route('login')->with('success', $this->successMessage);
-        
+        // return redirect()->route('login')->with('success', $this->successMessage);
+        return $user;
     }
 }

@@ -16,7 +16,6 @@
                     </span>
                 @enderror
 
-
                 <div class="text-center">
                     <div class="my-3">
                         <a href="{{ route('home.index') }}">
@@ -45,7 +44,7 @@
                             <input type="checkbox" class="custom-control-input" id="checkbox-signin" checked>
                             <label class="custom-control-label" for="checkbox-signin">Remember me</label>
 
-                            <a href="" class="text-muted float-right">Forgot
+                            <a href="{{ route('password.request') }}" class="text-muted float-right">Forgot
                                 your
                                 password <i class="mdi mdi-lock mr-1"></i> </a>
                         </div>
@@ -57,9 +56,6 @@
                     </div>
 
                     <span>Not yet a Member ? <a href="{{ route('register') }}"> Register </a> </span>
-
-
-
 
                 </form>
 

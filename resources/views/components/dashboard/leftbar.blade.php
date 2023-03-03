@@ -11,35 +11,29 @@
 
                 @if (auth()->check() && auth()->user()->user_type === '0')
                     <li>
-                        <a href="index-2.html">
+                        <a href="{{ route('user.dashboard') }}">
                             <i class="mdi mdi-view-dashboard"></i>
                             <span> Dashboard </span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="calendar.html">
+                        <a href="{{ route('user.notification') }}">
                             <i class="mdi mdi-calendar-month"></i>
                             <span> Notification </span>
                         </a>
                     </li>
                     <li>
-                        <a href="javascript: void(0);">
-                            <i class="mdi mdi-google-pages"></i>
+                        <a href="{{ route('user.schedule') }}">
+                            <i class="mdi mdi-calendar-month"></i>
                             <span> Schedule </span>
-                            <span class="menu-arrow"></span>
                         </a>
-                        <ul class="nav-second-level" aria-expanded="false">
-                            <li><a href="pages-timeline.html">Drop Off</a></li>
-                            <li><a href="pages-invoice.html">Pick Up</a></li>
-
-                        </ul>
                     </li>
 
                     <li>
-                        <a href="index-2.html">
+                        <a href="{{ route('user.orders') }}">
                             <i class="mdi mdi-view-dashboard"></i>
-                            <span> Track Laundry Status</span>
+                            <span> Orders</span>
                         </a>
                     </li>
 

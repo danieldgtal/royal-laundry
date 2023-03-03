@@ -27,11 +27,8 @@ use App\Http\Controllers\CustomAuthenticatedSessionController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-// GET
 
+/*Home Controller */
 Route::get('/', HomeController::class)->name('home.index');
 
 Route::get('/contact', [HomeController::class, 'contact'])->name('home.contact');
@@ -51,14 +48,16 @@ Route::post('/logout', [CustomAuthenticatedSessionController::class, 'logout'])
 Route::get('/redirect', [CustomAuthenticatedSessionController::class, 'redirectTo'])
   ->middleware(['auth','verified']);
 
-
 // Route::get('logout', [LogoutController::class, '__invoke'])->name('logout');
 
-// Route::post('/login', [AuthController::class,'login']);
+
 /* User section */
-Route::group(['prefix' => 'user', 'middleware' => ['auth','verified']], function (){
+Route::group(['prefix' => 'user', 'middleware' => ['user','verified']], function (){
   /*user dashboard */
   Route::get('dashboard',[UserController::class, 'index'])->name('user.dashboard');
+  Route::get('notification',[UserController::class, 'notification'])->name('user.notification');
+  Route::get('schedule',[UserController::class, 'schedule'])->name('user.schedule');
+  Route::get('orders',[UserController::class, 'orders'])->name('user.orders');
 });
 
 /* Staff section */

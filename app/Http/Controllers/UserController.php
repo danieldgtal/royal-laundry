@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
-{ 
+{   
+     
     public function __construct()
     {
       $this->middleware('user')->only(['create','edit','update','destroy']);
@@ -16,10 +17,25 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    { 
+       
         return view('user.dashboard');
     }
 
+    public function notification()
+    {
+      return view ('user.notification');
+    }
+
+    public function schedule()
+    {
+      return view('user.schedule');
+    }
+
+    public function orders()
+    {
+      return view('user.orders');
+    }
     /**
      * Show the form for creating a new resource.
      *

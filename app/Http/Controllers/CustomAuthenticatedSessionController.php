@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
+// use Laravel\Fortify\Http\Controllers\NewPasswordController;
+
 
 
 
@@ -65,11 +67,31 @@ class CustomAuthenticatedSessionController extends AuthenticatedSessionControlle
 
       // Redirect user to a particular route based on their type
       if($userType === '2'){
-        return redirect()->intended('/owner/dashboard');
+        return redirect()->intended('/admin/dashboard');
       }elseif($userType === '1'){
         return redirect()->intended('/staff/dashboard');
       }else {
         return redirect()->intended('/user/dashboard');
       }
   }
+
+
 }
+
+// class CustomNewPasswordController extends NewPasswordController {
+//   /**
+//    * Get the response for a successful password reset link.
+//    *
+//    * @param  \Illuminate\Http\Request  $request
+//    * @param  string  $response
+//    * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+//    */
+
+//    protected function sendResetLinkResponse(Request $request, $response)
+//     {
+//       return back()->with('password-status', 'Password reset Successful!');
+//     }
+
+
+
+// }

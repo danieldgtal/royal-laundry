@@ -47,5 +47,8 @@
                 </x-button>
             </div>
         </form>
-    </x-authentication-card>
-</x-guest-layout>
+        </div> <!-- end card-body -->
+        </div>
+        <!-- end card -->
+        </div>
+    @endsection

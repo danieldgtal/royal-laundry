@@ -4,6 +4,10 @@
     <div class="account-card-box">
         <div class="card mb-0">
             <div class="card-body p-4">
+                <a href="{{ route('home.index') }}" class="mb-4">
+                    <span><img src="{{ asset('dashboard/assets/images/logo.png') }}" class="mx-auto" alt=""
+                            height="28"></span>
+                </a>
                 <div class="mb-4 text-sm text-gray-600">
                     {{ __('Before continuing, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
                 </div>

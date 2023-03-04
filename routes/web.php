@@ -58,6 +58,11 @@ Route::group(['prefix' => 'user', 'middleware' => ['user','verified']], function
   Route::get('notification',[UserController::class, 'notification'])->name('user.notification');
   Route::get('schedule',[UserController::class, 'schedule'])->name('user.schedule');
   Route::get('orders',[UserController::class, 'orders'])->name('user.orders');
+  Route::get('invoice',[UserController::class, 'invoice'])->name('user.invoice');
+  Route::get('transactions',[UserController::class, 'transactions'])->name('user.transactions');
+  Route::get('checkout',[UserController::class, 'checkout'])->name('user.checkout');
+  Route::get('feedback',[UserController::class, 'feedback'])->name('user.feedback');
+  Route::get('profile',[UserController::class, 'profile'])->name('user.profile');
 });
 
 /* Staff section */

@@ -4,6 +4,10 @@
     <div class="account-card-box">
         <div class="card mb-0">
             <div class="card-body p-4">
+                <a href="{{ route('home.index') }}" class="mb-4">
+                    <span><img src="{{ asset('dashboard/assets/images/logo.png') }}" class="mx-auto" alt=""
+                            height="28"></span>
+                </a>
                 <h3>Reset Password</h3>
                 <x-validation-errors class="mb-4" />
 

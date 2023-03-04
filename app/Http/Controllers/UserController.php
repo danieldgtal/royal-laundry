@@ -36,11 +36,28 @@ class UserController extends Controller
     {
       return view('user.orders');
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function invoice()
+    {
+      return view('user.invoice');
+    }
+    
+    public function transactions()
+    {
+      return view('user.transactions');
+    }
+    public function checkout()
+    {
+      return view('user.checkout');
+    }
+    public function feedback()
+    {
+      return view('user.feedback');
+    }
+    public function profile()
+    {
+      return view('user.profile');
+    }
     public function create()
     {
         //

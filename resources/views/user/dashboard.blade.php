@@ -3,7 +3,7 @@
 @section('content')
     <style>
         .div-hover:hover {
-            background-color: #d3d3d3
+            background-color: #f2f0f0
         }
     </style>
     <div class="container-fluid">
@@ -146,4 +146,5 @@
 
     </div>
     <!-- end container-fluid -->
+    <x-dashboard.datatablejs />
 @endsection

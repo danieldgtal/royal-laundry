@@ -1,3 +1,18 @@
+<style>
+    .nav-link {
+        display: block;
+        padding: 13px 25px;
+        position: relative;
+        transition: all 0.4s;
+        font-size: 15.5px;
+    }
+
+
+    .nav-link.active {
+        background-color: #f5f8fb;
+        color: #64b0f2;
+    }
+</style>
 <div class="left-side-menu">
 
     <div class="slimscroll-menu">
@@ -12,78 +27,59 @@
                 @if (auth()->check() && auth()->user()->user_type === '0')
                     <li>
                         <a href="{{ route('user.dashboard') }}">
-                            <i class="mdi mdi-view-dashboard"></i>
+                            <i class="fas fa-table dashboard-icon"></i>
                             <span> Dashboard </span>
                         </a>
                     </li>
 
                     <li>
                         <a href="{{ route('user.notification') }}">
-                            <i class="mdi mdi-calendar-month"></i>
+                            <i class="fas fa-bell notification-icon"></i>
                             <span> Notification </span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('user.schedule') }}">
-                            <i class="mdi mdi-calendar-month"></i>
+                            <i class="fas fa-calendar-alt"></i>
                             <span> Schedule </span>
                         </a>
                     </li>
 
                     <li>
                         <a href="{{ route('user.orders') }}">
-                            <i class="mdi mdi-view-dashboard"></i>
+                            <i class="fas fa-shopping-cart"></i>
                             <span> Orders</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="javascript: void(0);">
-                            <i class="mdi mdi-content-copy"></i>
-                            <span> Select Services </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <ul class="nav-second-level" aria-expanded="false">
-                            <li><a href="pages-timeline.html">Timeline</a></li>
-                            <li><a href="pages-invoice.html">Invoice</a></li>
-                            <li><a href="pages-pricing.html">Pricing</a></li>
-                            <li><a href="pages-gallery.html">Gallery</a></li>
-                            <li><a href="pages-maintenance.html">Maintenance</a></li>
-                            <li><a href="pages-comingsoon.html">Coming Soon</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="index-2.html">
-                            <i class="mdi mdi-view-dashboard"></i>
+                        <a href="{{ route('user.transactions') }}">
+                            <i class="fas fa-history"></i>
                             <span> Transaction History </span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="index-2.html">
-                            <i class="mdi mdi-view-dashboard"></i>
-                            <span> Payments </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="index-2.html">
-                            <i class="mdi mdi-view-dashboard"></i>
+                        <a href="{{ route('home.contact') }}">
+                            <i class="fas fa-comment"></i>
                             <span> Feedback </span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="calendar.html">
-                            <i class="mdi mdi-calendar-month"></i>
+                        <a href="{{ route('user.profile') }}">
+                            <i class="fas fa-user-circle"></i>
                             <span> Profile </span>
                         </a>
                     </li>
-                    <li>
-                        <a href="index-2.html">
-                            <i class="mdi mdi-view-dashboard"></i>
-                            <span> Logout </span>
-                        </a>
+                    <li class="nav-link">
+                        <form action="{{ route('logout') }} " method="post">
+                            <button type="submit">
+                                @csrf
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span> Logout </span>
+                            </button>
+                        </form>
                     </li>
                 @endif
                 @if (auth()->check() && auth()->user()->user_type === '1')

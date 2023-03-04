@@ -77,4 +77,5 @@
     <!-- end row -->
 
     <!-- end container-fluid -->
+    <x-dashboard.datatablejs />
 @endsection

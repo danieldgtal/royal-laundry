@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->index();
+            $table->unsignedBigInteger('customer_id');
             $table->string('firstname');
             $table->string('lastname');
             $table->string('phone')->nullable();
@@ -23,13 +23,15 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->text('city')->nullable();
             $table->text('state')->nullable();
-            $table->string('gender');
+            $table->string('gender')->nullable();
             $table->string('email')->unique();
             $table->timestamps();
 
-            //Define the foreign key
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            // Define the foreign key
+            $table->foreign('customer_id')->references('id')->on('users')->onDelete('cascade');
+            
         });
+
     }
 
     /**

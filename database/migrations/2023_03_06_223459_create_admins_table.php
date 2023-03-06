@@ -13,13 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('branch', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('admin_id');
             $table->string('name');
-            $table->string('address');
             $table->string('phone');
             $table->string('email')->unique();
             $table->timestamps();
+
+            // Define foreign key constraints
+            $table->foreign('admin_id')->references('id')->on('users')->onDelete('cascade');
+
+
         });
     }
 
@@ -30,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('branch');
+        Schema::dropIfExists('admins');
     }
 };

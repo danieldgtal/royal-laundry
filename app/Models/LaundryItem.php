@@ -5,19 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Staff extends Model
+class LaundryItem extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-      'staff_id',
-      'branch_id',
-      'firstname',
-      'lastname',
-      'email',
-      'gender',
-      'password',
+      'item_id',
+      'item_name',
+      'category',
+      'price',
     ];
 
-
+    
 }

@@ -3,7 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\LaundryItem;
 use Illuminate\Database\Seeder;
+use Database\Seeders\StaffMemberSeeder;
+use Database\Factories\LaundryItemFactory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +18,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+      // LaundryItem::factory(100)->create();
+      $this->call(UsersTableSeeder::class);
+      $this->call(BranchSeeder::class);
+      $this->call(StaffMemberSeeder::class);
+      $this->call(LaundryItemSeeder::class);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+      
     }
 }

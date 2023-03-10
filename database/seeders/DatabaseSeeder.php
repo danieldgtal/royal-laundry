@@ -6,7 +6,6 @@ namespace Database\Seeders;
 
 use App\Models\LaundryItem;
 use Illuminate\Database\Seeder;
-use Database\Seeders\StaffMemberSeeder;
 use Database\Factories\LaundryItemFactory;
 
 class DatabaseSeeder extends Seeder
@@ -21,7 +20,6 @@ class DatabaseSeeder extends Seeder
       // LaundryItem::factory(100)->create();
       $this->call(UsersTableSeeder::class);
       $this->call(BranchSeeder::class);
-      $this->call(StaffMemberSeeder::class);
       $this->call(LaundryItemSeeder::class);
 
       

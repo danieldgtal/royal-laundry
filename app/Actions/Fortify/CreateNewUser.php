@@ -13,10 +13,6 @@ use Laravel\Jetstream\Jetstream;
 
 class CreateNewUser implements CreatesNewUsers
 {   
-    public $successMessage = '';
-    use PasswordValidationRules;
- 
-
     /**
      * Validate and create a newly registered user.
      *
@@ -26,7 +22,7 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input)// :User
     { 
         
-        Validator::make($input, [
+       Validator::make($input, [
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -39,14 +35,13 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-
         $user = User::create([
             'name' => $input['firstname']. " " .$input['lastname'],
             'email' => $input['email'],
             'phone' => $input['phone'],
             'password' => Hash::make($input['password']),
         ]);
-        
+             
         // Create new customer instance
         $date = DateTime::createFromFormat('d/m/Y',$input['dob']);
         if($date){
@@ -55,9 +50,8 @@ class CreateNewUser implements CreatesNewUsers
           $formattedDate = null;
         }
        
-
         $customer = Customer::create([
-          'user_id' => $user->id,
+          'customer_id' => $user->id,
           'firstname' => $input['firstname'],
           'lastname' => $input['lastname'],
           'email' => $user->email,
@@ -70,19 +64,6 @@ class CreateNewUser implements CreatesNewUsers
 
         ]);
            
-        //Send welcome email notification
-        /*
-          some code here for email register auth
-        */
-
-        // Log out the current user and terminate the session
-        Auth::logout();
-
-        // Set a flash message that will be available on the next request
-        $this->successMessage = 'Registration successful! Please log in to continue.';
-
-        // Redirect user to the login page
-        // return redirect()->route('login')->with('success', $this->successMessage);
         return $user;
     }
 }

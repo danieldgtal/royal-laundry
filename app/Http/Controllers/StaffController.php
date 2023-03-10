@@ -8,7 +8,7 @@ class StaffController extends Controller
 { 
     public function __construct()
     {
-      $this->middleware('staff')->only(['create','edit','update','destroy']);
+      $this->middleware(['staff']);
     }
     /**
      * Display a listing of the resource.
@@ -16,15 +16,12 @@ class StaffController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('staff.dashboard');
+    { 
+     
+      return view('staff.dashboard');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function create()
     {
         //

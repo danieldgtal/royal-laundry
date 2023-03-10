@@ -13,13 +13,21 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('dashboard/admin/assets/images/favicon.ico') }}">
     <!-- App css -->
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css">
+    <link href="{{ asset('dashboard/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.css') }}"
+        rel="stylesheet" />
+    <link href="{{ asset('dashboard/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.css') }}"
+        rel="stylesheet">
+    <link href="{{ asset('dashboard/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.css') }}"
+        rel="stylesheet" />
+    <link href="{{ asset('dashboard/assets/libs/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
+    <link href="{{ asset('dashboard/assets/libs/clockpicker/bootstrap-clockpicker.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('dashboard/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"
         id="bootstrap-stylesheet" />
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css" integrity="..."
-        crossorigin="anonymous">
-
     <link href="{{ asset('dashboard/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('dashboard/assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-stylesheet" />
+    <link href="{{ asset('dashboard/assets/css/app.min.css') }}" rel="stylesheet" type="text/css"
+        id="app-stylesheet" />
     <script src="{{ mix('/js/app.js') }}"></script>
 </head>
 
@@ -67,6 +75,15 @@
 
     <!-- Vendor js -->
     <script src="{{ asset('dashboard/assets/js/vendor.min.js') }}"></script>
+    <!-- plugins -->
+    <script src="{{ asset('dashboard/assets/libs/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('dashboard/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js') }}"></script>
+    <script src="{{ asset('dashboard/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js') }} "></script>
+    <script src="{{ asset('dashboard/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js') }} "></script>
+    <script src="{{ asset('dashboard/assets/libs/bootstrap-daterangepicker/daterangepicker.js') }} "></script>
+    <script src="{{ asset('dashboard/assets/libs/clockpicker/bootstrap-clockpicker.min.js') }}"></script>
+    <!-- Init js-->
+    <script src="{{ asset('dashboard/assets/js/pages/form-pickers.init.js') }}"></script>
     <!--Morris Chart-->
     <script src="{{ asset('dashboard/assets/libs/morris-js/morris.min.js') }}"></script>
     <script src="{{ asset('dashboard/assets/libs/raphael/raphael.min.js') }}"></script>

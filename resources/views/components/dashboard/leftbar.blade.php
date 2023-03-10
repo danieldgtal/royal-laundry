@@ -133,7 +133,8 @@
                             <span class="menu-arrow"></span>
                         </a>
                         <ul class="nav-second-level" aria-expanded="false">
-                            <li><a href="widgets-tiles.html">Tile Box</a></li>
+                            <li><a href="{{ route('staff.all-customers') }}">All Customer</a></li>
+                            <li><a href="{{ route('staff.new-customer') }}">Create Customer</a></li>
                             <li><a href="widgets-charts.html">Chart Widgets</a></li>
                         </ul>
                     </li>

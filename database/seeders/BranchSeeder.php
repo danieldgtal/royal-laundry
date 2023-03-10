@@ -23,6 +23,12 @@ class BranchSeeder extends Seeder
           'address' => '28 amuwo odofin street',
           'phone' => '08022873600',
         ],
+        [
+          'name' => 'Lekki',
+          'email' => 'lekki@dechoiceroyal.com',
+          'address' => '28 lekki street',
+          'phone' => '0809002002',
+        ],
 
       ]);
           

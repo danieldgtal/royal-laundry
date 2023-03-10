@@ -1,5 +1,4 @@
 @extends('layouts.guest')
-
 @section('content')
     <div class="account-card-box">
         <div class="card mb-0">

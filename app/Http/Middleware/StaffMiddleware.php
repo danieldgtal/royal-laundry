@@ -18,7 +18,8 @@ class StaffMiddleware
     { 
       if($request->user() && $request->user()->user_type !== '1'){
         abort(403, 'Unauthorized action.');
-      }
-        return $next($request);
+      } 
+      return $next($request);
+        
     }
 }

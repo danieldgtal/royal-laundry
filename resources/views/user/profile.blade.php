@@ -16,29 +16,29 @@
                     <h4 class="header-title mb-4">User Profile</h4>
                     <form method="POST">
                         <div class="row">
-
+                            {{-- @foreach ($users as $user) --}}
                             <div class="col-xl-6">
 
                                 @csrf
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">FirstName</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1">
+                                    <label for="firstname">FirstName</label>
+                                    <input type="text" class="form-control" id="firstname" name="firstname"
+                                        value="{{ $user->firstname }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">LastName</label>
-                                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="">
+                                    <label for="lastname">LastName</label>
+                                    <input type="text" class="form-control" id="lastname" name="lastname"
+                                        value="{{ $user->lastname }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleSelect1">Phone</label>
-                                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="">
+                                    <label for="phone">Phone</label>
+                                    <input type="text" class="form-control" id="phone" name="phone"
+                                        value="{{ $user->phone }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleSelect2">Address</label>
                                     <label for="address">Address</label>
-                                    <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+                                    <textarea class="form-control" id="address" name="address" rows="3">{{ $user->address }}</textarea>
                                 </div>
-
-
 
                             </div><!-- end col -->
 
@@ -46,22 +46,24 @@
 
                                 <fieldset>
                                     <div class="form-group">
-                                        <label for="disabledTextInput">Email</label>
-                                        <input type="text" id="disabledTextInput" class="form-control"
-                                            placeholder="Disabled input">
+                                        <label for="email">Email</label>
+                                        <input type="text" id="email" class="form-control" name="email"
+                                            value="{{ $user->email }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="dob">Date of Birth</label>
                                         <input type="date" class="form-control" id="dob" name="dob"
-                                            value="">
+                                            value="{{ $user->dob }}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleSelect2">City</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1">
+                                        <label for="City">City</label>
+                                        <input type="text" class="form-control" id="dob" name="dob"
+                                            value="{{ $user->city }}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleSelect2">State</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1">
+                                        <label for="State">State</label>
+                                        <input type="text" class="form-control" id="state" name="state"
+                                            value="{{ $user->state }}">
                                     </div>
                                     <button type="button" class="btn btn-primary waves-effect waves-light width-lg">Update
                                         Profile</button>
@@ -70,7 +72,7 @@
 
 
                             </div><!-- end col -->
-
+                            {{-- @endforeach --}}
                         </div><!-- end row -->
                     </form>
                 </div>

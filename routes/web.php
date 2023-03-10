@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomAuthenticatedSessionController;
 // use App\Http\Controllers\LogoutController;
 
@@ -52,8 +53,9 @@ Route::get('/redirect', [CustomAuthenticatedSessionController::class, 'redirectT
 
 
 /* User section */
-Route::group(['prefix' => 'user', 'middleware' => ['user','verified']], function (){
+Route::group(['prefix' => 'user', 'middleware' => ['auth','user','verified']], function (){
   /*user dashboard */
+  Route::get('/',[UserController::class, 'index'])->name('user.dashboard');
   Route::get('dashboard',[UserController::class, 'index'])->name('user.dashboard');
   Route::get('notification',[UserController::class, 'notification'])->name('user.notification');
   Route::get('schedule',[UserController::class, 'schedule'])->name('user.schedule');
@@ -66,16 +68,23 @@ Route::group(['prefix' => 'user', 'middleware' => ['user','verified']], function
 });
 
 /* Staff section */
-Route::group(['prefix' => 'staff','middleware' => 'staff'], function (){
-  /*user dashboard */
+Route::group(['middleware' => ['auth','staff'], 'prefix' => 'staff' ], function (){
+  /*staff dashboard */
+  Route::get('/',[StaffController::class, 'index'])->name('staff.dashboard');
   Route::get('dashboard',[StaffController::class, 'index'])->name('staff.dashboard');
+  Route::get('new-customer',[CustomerController::class, 'create'])->name('staff.new-customer');
+  Route::post('new-customer',[CustomerController::class, 'store'])->name('staff.new-customer');
+  Route::get('all-customers',[CustomerController::class, 'index'])->name('staff.all-customers');
 });
 
 /* Owner section */
-Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
-  /*user dashboard */
+Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin'] ], function (){
+  /*owner  dashboard */
+  Route::get('/',[AdminController::class, 'index'])->name('admin.dashboard');
   Route::get('dashboard',[AdminController::class, 'index'])->name('admin.dashboard');
 });
+
+
 
 
 

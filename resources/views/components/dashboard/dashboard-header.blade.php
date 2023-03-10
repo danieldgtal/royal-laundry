@@ -1,3 +1,7 @@
+@php
+    $url = url()->current();
+    $page = Str::ucfirst(basename(parse_url($url, PHP_URL_PATH)));
+@endphp
 <div class="row">
     <div class="col-12">
         <div class="page-title-box">
@@ -14,10 +18,10 @@
                             @endif
                         </a>
                     </li>
-                    <li class="breadcrumb-item active">Dashboard</li>
+                    <li class="breadcrumb-item active">{{ $page }}</li>
                 </ol>
             </div>
-            <h4 class="page-title">{{ $url }} </h4>
+            <h4 class="page-title">{{ $page }} </h4>
         </div>
     </div>
 </div>

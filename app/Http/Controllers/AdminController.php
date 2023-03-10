@@ -8,7 +8,7 @@ class AdminController extends Controller
   {    
     public function __construct()
     {
-      $this->middleware('admin')->only(['create','edit','update','destroy']);
+      $this->middleware('admin');
     }
     /**
      * Display a listing of the resource.

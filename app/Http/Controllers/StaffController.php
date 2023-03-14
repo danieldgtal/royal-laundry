@@ -21,6 +21,10 @@ class StaffController extends Controller
       return view('staff.dashboard');
     }
 
+    public function listItems()
+    {
+      return view('staff.items');
+    }
   
     public function create()
     {

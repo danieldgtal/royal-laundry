@@ -29,6 +29,8 @@
     <link href="{{ asset('dashboard/assets/css/app.min.css') }}" rel="stylesheet" type="text/css"
         id="app-stylesheet" />
     <script src="{{ mix('/js/app.js') }}"></script>
+    @livewireStyles
+    @livewireScripts
 </head>
 
 <body>

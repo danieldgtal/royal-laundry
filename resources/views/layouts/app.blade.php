@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('dashboard/admin/assets/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('dashboard/assets/images/favicon.ico') }}">
     <!-- App css -->
 
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css">
@@ -28,10 +28,11 @@
     <link href="{{ asset('dashboard/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('dashboard/assets/css/app.min.css') }}" rel="stylesheet" type="text/css"
         id="app-stylesheet" />
-    <script src="{{ mix('/js/app.js') }}"></script>
+    <script src="{{ mix('/js/app.js') }}" defer></script>
     @livewireStyles
     @livewireScripts
 </head>
+
 
 <body>
 
@@ -40,16 +41,9 @@
 
         <!-- Topbar Start -->
         <x-dashboard.topbar />
-        <!-- end Topbar -->
 
-
-        <!-- ========== Left Sidebar Start ========== -->
+        <!-- Leftbar -->
         <x-dashboard.leftbar />
-        <!-- Left Sidebar End -->
-
-        <!-- ============================================================== -->
-        <!-- Start Page Content here -->
-        <!-- ============================================================== -->
 
         <div class="content-page">
             <div class="content">
@@ -58,9 +52,8 @@
                 @yield('content')
                 <!-- end container-fluid -->
 
-            </div> <!-- end content -->
-
-
+            </div>
+            <!-- end content -->
 
             <!-- Footer Start -->
             <x-dashboard.footer />
@@ -68,12 +61,9 @@
 
         </div>
 
-        <!-- ============================================================== -->
-        <!-- End Page content -->
-        <!-- ============================================================== -->
-
     </div>
     <!-- END wrapper -->
+
 
     <!-- Vendor js -->
     <script src="{{ asset('dashboard/assets/js/vendor.min.js') }}"></script>
@@ -93,7 +83,7 @@
     <script src="{{ asset('dashboard/assets/js/pages/dashboard.init.js') }}"></script>
     <!-- App js -->
     <script src="{{ asset('dashboard/assets/js/app.min.js') }}"></script>
-
+    @stack('scripts')
 </body>
 
 </html>

@@ -179,7 +179,7 @@
 
     <!-- LOGO -->
     <div class="logo-box">
-        <a href="index-2.html" class="logo text-center logo-dark">
+        <a href="#" class="logo text-center logo-dark">
             <span class="logo-lg">
                 <img src="{{ asset('dashboard/assets/images/logo.png') }} " alt="" height="22">
                 <!-- <span class="logo-lg-text-dark">Uplon</span> -->
@@ -190,15 +190,14 @@
             </span>
         </a>
 
-        <a href="index-2.html" class="logo text-center logo-light">
+        <a href="#" class="logo text-center logo-light">
             <span class="logo-lg">
                 <img src="{{ asset('dashboard/assets/images/logo-light.png') }}" alt="" height="22">
                 <!-- <span class="logo-lg-text-dark">Uplon</span> -->
             </span>
             <span class="logo-sm">
                 <!-- <span class="logo-lg-text-dark">U</span> -->
-                <img src="{{ asset('dashboard/assets/images/logo-sm-light.pngssets') }} " alt=""
-                    height="24">
+                <img src="{{ asset('dashboard/assets/images/logo-sm-light.png') }}" alt="" height="24">
             </span>
         </a>
     </div>

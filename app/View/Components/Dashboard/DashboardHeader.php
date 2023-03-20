@@ -8,6 +8,7 @@ class DashboardHeader extends Component
 {
    
     public $url;
+    
     public function __construct($url)
     {
       $this->url = $url;

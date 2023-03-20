@@ -76,7 +76,7 @@ Route::group(['middleware' => ['auth','staff'], 'prefix' => 'staff' ], function 
   Route::get('new-customer',[CustomerController::class, 'create'])->name('staff.new-customer');
   Route::post('/new-customer',[CustomerController::class, 'store'])->name('staff.new-customer');
   Route::get('all-customers',[CustomerController::class, 'index'])->name('staff.all-customers');
-  Route::get('/items', [StaffController::class, 'listItems'])->name('staff.items');
+  Route::get('items', [StaffController::class,'itemsList'])->name('staff.items');
   Route::get('invoices', \App\Http\Livewire\Staff\Invoices::class)->name('staff.invoices');
   Route::get('inventories', \App\Http\Livewire\Staff\Inventories::class)->name('staff.inventories');
   Route::get('orders', \App\Http\Livewire\Staff\Orders::class)->name('staff.orders');

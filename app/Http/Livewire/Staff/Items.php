@@ -9,11 +9,121 @@ use Livewire\WithPagination;
 class Items extends Component
 {
   use WithPagination;
-    public function render()
-    {   
-        $items = LaundryItem::paginate(25);
-        return view('livewire.staff.all-items',[
-          'items' => $items
-        ]);
-    }
+  
+  protected $paginationTheme = 'bootstrap';
+
+  public $per_page = 10;
+  
+  public $showModal = false;
+  public $item_id;
+
+  public $item_name, $item_category, $item_price, $package_unit;
+
+  public function updated($fields)
+  {
+    $this->validateOnly($fields,[
+      'item_name' => 'required|string|max:255',
+      'item_category' => 'required|string|max:255',
+      'item_price' => 'required|numeric',
+      'package_unit' => 'required|numeric',
+      
+    ]);
+  
+  }
+   
+
+  function addNewItem()
+  {
+    $this->validate([
+      'item_name' => 'required|string|max:255',
+      'item_category' => 'required|string|max:255',
+      'item_price' => 'required|numeric',
+      'package_unit' => 'required|numeric',
+      
+    ]);
+
+    // Add New Item
+    $item = new LaundryItem ();
+    $item->item_name = $this->item_name; 
+    $item->item_category = $this->item_category; 
+    $item->item_price = $this->item_price; 
+    $item->package_unit = $this->package_unit; 
+    $item->created_at = now();
+    $item->updated_at = now();
+
+
+    $item->save();
+
+    session()->flash('message','New item added successfully');
+    
+    $this->item_name = '';
+    $this->item_category = '';
+    $this->package_unit = '';
+    $this->item_price = '';
+
+   //For hide modal after add student success
+   $this->dispatchBrowserEvent('close-modal');
+
+  }
+
+  public function resetInputs()
+  {
+    $this->item_name = '';
+    $this->item_category = '';
+    $this->item_price = '';
+    $this->package_unit = '';
+    
+  }
+
+  public function editItem($id)
+  {
+    $item = LaundryItem::where('id', $id)->first();
+
+    $this->item_id = $item->id;
+    $this->item_name = $item->item_name;
+    $this->item_category = $item->item_category;
+    $this->item_price = $item->item_price;
+    $this->package_unit = $item->package_unit;
+
+    $this->dispatchBrowserEvent('show-edit-item-modal');
+  }
+
+  public function editItemData()
+  {
+    //on form submit validation
+    $this->validate([
+      'item_name' => 'required|string|max:255',
+      'item_category' => 'required|string|max:255',
+      'item_price' => 'required|numeric',
+      'package_unit' => 'required|numeric',
+    ]);
+
+    $item = LaundryItem::where('id', $this->item_id)->first();
+
+    $this->item_id = $item->id;
+    $this->item_name = $item->item_name;
+    $this->item_category = $item->item_category;
+    $this->item_price = $item->item_price;
+    $this->package_unit = $item->package_unit;
+    echo 
+    $item->save();
+
+    $this->resetInputs();
+
+    session()->flash('message','Item has been updated successfully!');
+
+    //For hide modal after add student success
+    $this->dispatchBrowserEvent('close-modal');
+ 
+  }
+
+
+  
+  public function render()
+  {   
+    return view('livewire.staff.items',[
+      'items' => LaundryItem::paginate($this->per_page),
+    ]);
+  }
+
 }

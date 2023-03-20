@@ -1,16 +1,13 @@
 @extends('layouts.app')
 @section('content')
     <div class="container-fluid">
-
         <!-- start page title -->
         @php
             $url = url()->current();
             $page = Str::ucfirst(basename(parse_url($url, PHP_URL_PATH)));
         @endphp
         <x-dashboard.dashboard-header url="{{ $page }}" />
-
         <!-- end page title -->
-
         <div class="row">
             <div class="col-xl-3 col-md-6">
                 <div class="card-box tilebox-two">
@@ -45,7 +42,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     </div>

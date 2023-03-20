@@ -7,7 +7,6 @@
         }
     </style>
     <div class="container-fluid">
-
         <!-- start page title -->
         @php
             $url = url()->current();

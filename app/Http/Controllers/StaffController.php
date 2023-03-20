@@ -18,10 +18,10 @@ class StaffController extends Controller
     public function index()
     { 
      
-      return view('staff.dashboard');
+      return view('livewire.staff.dashboard');
     }
 
-    public function listItems()
+    public function itemsList()
     {
       return view('staff.items');
     }

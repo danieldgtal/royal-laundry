@@ -8,6 +8,8 @@
         @endphp
         <x-dashboard.dashboard-header url="{{ $page }}" />
         <!-- end page title -->
-        @livewire('staff.items')
+
+        {{-- livewire staff component   --}}
+        <livewire:staff.items />
     </div>
 @endsection

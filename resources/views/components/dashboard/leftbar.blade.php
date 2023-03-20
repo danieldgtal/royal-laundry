@@ -7,7 +7,6 @@
         font-size: 15.5px;
     }
 
-
     .nav-link.active {
         background-color: #f5f8fb;
         color: #64b0f2;

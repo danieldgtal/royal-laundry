@@ -12,8 +12,11 @@ class LaundryItem extends Model
     protected $fillable = [
       'item_id',
       'item_name',
-      'category',
-      'price',
+      'item_category',
+      'item_price',
+      'package_unit',
+      'created_at',
+      'updated_at',
     ];
 
     

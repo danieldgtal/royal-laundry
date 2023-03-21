@@ -126,7 +126,6 @@
         </div>
     </div>
 
-
     <div class="col-12">
         <div class="card-box">
             <h4 class="header-title">All Items Table</h4>
@@ -239,7 +238,7 @@
                                             <button class="fa fa-edit pr-3"
                                                 wire:click="editItem({{ $item->id }})"></button>
                                             <button class="fa fa-trash text-danger"
-                                                wire:click="deleteItem({{ $item->id }})"></button>
+                                                wire:click.prevent="deleteConfirm({{ $item->id }})"></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -268,9 +267,41 @@
     <script>
         window.addEventListener('close-modal', event => {
             $('#addItemModal').modal('hide');
+            $('#editItemModal').modal('hide');
         });
         window.addEventListener('show-edit-item-modal', event => {
             $('#editItemModal').modal('show');
         });
+        window.addEventListener('show-delete-alert', event => {
+            $('#sa-warning').modal('show');
+        });
+    </script>
+    <!--Sweet alert delete script -->
+    <script>
+        window.addEventListener('show-delete-alert', event => {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.emit('deleteItemData')
+                } else {
+                    // Swal.close();
+                }
+            })
+        })
+
+        window.addEventListener('itemDeleted', event => {
+            Swal.fire(
+                'Deleted',
+                'Item has been deleted',
+                'success',
+            )
+        })
     </script>
 @endpush

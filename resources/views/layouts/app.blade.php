@@ -83,6 +83,8 @@
     <script src="{{ asset('dashboard/assets/js/pages/dashboard.init.js') }}"></script>
     <!-- App js -->
     <script src="{{ asset('dashboard/assets/js/app.min.js') }}"></script>
+    <!-- Sweet alert init js-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @stack('scripts')
 </body>
 

@@ -16,6 +16,8 @@ class Items extends Component
   
   public $showModal = false;
   public $item_id;
+  
+  protected $listeners = ['deleteItemData' => 'deleteItemDataFile'];
 
   public $item_name, $item_category, $item_price, $package_unit;
 
@@ -100,12 +102,13 @@ class Items extends Component
 
     $item = LaundryItem::where('id', $this->item_id)->first();
 
-    $this->item_id = $item->id;
-    $this->item_name = $item->item_name;
-    $this->item_category = $item->item_category;
-    $this->item_price = $item->item_price;
-    $this->package_unit = $item->package_unit;
-    echo 
+    $item->id = $this->item_id;
+    $item->item_name = $this->item_name;
+    $item->item_category = $this->item_category ;
+    $item->item_price = $this->item_price;
+    $item->package_unit = $this->package_unit;
+    $item->updated_at = now();
+    
     $item->save();
 
     $this->resetInputs();
@@ -115,6 +118,21 @@ class Items extends Component
     //For hide modal after add student success
     $this->dispatchBrowserEvent('close-modal');
  
+  }
+
+  public function deleteConfirm($id)
+  {
+    $this->item_id = $id;
+
+    $this->dispatchBrowserEvent('show-delete-alert');
+  }
+
+  public function deleteItemDataFile()
+  {
+    $item = LaundryItem::where('id',$this->item_id)->first();
+    $item->delete();
+
+    $this->dispatchBrowserEvent('itemDeleted');
   }
 
 

@@ -140,7 +140,7 @@
 
             <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 col-md-6">
                         <div class="dataTables_length" id="datatable_length">
                             <label>Show
                                 <select aria-controls="datatable" wire:model="per_page"
@@ -155,15 +155,12 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-
-                        <div class="float-right mt-3">
-                            <button class="btn btn-primary waves-effect waves-light" data-toggle="modal"
-                                data-target="#addItemModal">
-                                <i class="fa fa-plus"></i> Add item
-                            </button>
-                        </div>
-
-
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <button class="btn btn-primary waves-effect waves-light float-right" data-toggle="modal"
+                            data-target="#addItemModal">
+                            <i class="fa fa-plus"></i> Add item
+                        </button>
                     </div>
                 </div>
             </div>

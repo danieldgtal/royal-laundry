@@ -12,8 +12,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('dashboard/assets/images/favicon.ico') }}">
-    <!-- App css -->
+    <!-- Table datatable css -->
+    <link href="{{ asset('dashboard/assets/libs/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
 
+    <link href="{{ asset('dashboard/assets/libs/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('dashboard/assets/libs/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('dashboard/assets/libs/datatables/select.bootstrap4.min.css') }}" rel="stylesheet" />
+    <!-- App css -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css">
     <link href="{{ asset('dashboard/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.css') }}"
         rel="stylesheet" />

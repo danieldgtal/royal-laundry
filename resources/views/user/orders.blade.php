@@ -18,6 +18,71 @@
         <!-- end page title -->
 
         <div class="row">
+
+            <!-- Modal -->
+            <div class="modal fade" id="newOrderModal" tabindex="-1" role="dialog" aria-labelledby="newOrderModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="newOrderModalLabel">New Order Form</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="customerName">Customer Name</label>
+                                    <input type="text" class="form-control" id="customerName"
+                                        placeholder="Enter your name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="customerEmail">Email address</label>
+                                    <input type="email" class="form-control" id="customerEmail" placeholder="Enter email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="serviceType">Service Type</label>
+                                    <select class="form-control" id="serviceType">
+                                        <option>Regular Washing</option>
+                                        <option>Dry Cleaning</option>
+                                        <option>Ironing</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="laundryItems">Laundry Items</label>
+                                    <textarea class="form-control" id="laundryItems" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="quantity">Quantity</label>
+                                    <input type="number" class="form-control" id="quantity">
+                                </div>
+                                <div class="form-group">
+                                    <label for="specialInstructions">Special Instructions</label>
+                                    <textarea class="form-control" id="specialInstructions" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pickupDate">Pick-up Date</label>
+                                    <input type="date" class="form-control" id="pickupDate">
+                                </div>
+                                <div class="form-group">
+                                    <label for="deliveryDate">Delivery Date</label>
+                                    <input type="date" class="form-control" id="deliveryDate">
+                                </div>
+                                <div class="form-group">
+                                    <label for="paymentAmount">Amount to be Paid</label>
+                                    <input type="number" class="form-control" id="paymentAmount">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Submit Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-12 col-md-6">
@@ -32,9 +97,7 @@
                                 </select> entries
                             </label>
                         </div>
-
                     </div>
-
                 </div>
                 <div class="card">
 
@@ -138,68 +201,7 @@
     </div>
     <!-- Button to trigger modal -->
 
-    <!-- Modal -->
-    <div class="modal fade" id="newOrderModal" tabindex="-1" role="dialog" aria-labelledby="newOrderModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="newOrderModalLabel">New Order Form</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="customerName">Customer Name</label>
-                            <input type="text" class="form-control" id="customerName" placeholder="Enter your name">
-                        </div>
-                        <div class="form-group">
-                            <label for="customerEmail">Email address</label>
-                            <input type="email" class="form-control" id="customerEmail" placeholder="Enter email">
-                        </div>
-                        <div class="form-group">
-                            <label for="serviceType">Service Type</label>
-                            <select class="form-control" id="serviceType">
-                                <option>Regular Washing</option>
-                                <option>Dry Cleaning</option>
-                                <option>Ironing</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="laundryItems">Laundry Items</label>
-                            <textarea class="form-control" id="laundryItems" rows="3"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="quantity">Quantity</label>
-                            <input type="number" class="form-control" id="quantity">
-                        </div>
-                        <div class="form-group">
-                            <label for="specialInstructions">Special Instructions</label>
-                            <textarea class="form-control" id="specialInstructions" rows="3"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="pickupDate">Pick-up Date</label>
-                            <input type="date" class="form-control" id="pickupDate">
-                        </div>
-                        <div class="form-group">
-                            <label for="deliveryDate">Delivery Date</label>
-                            <input type="date" class="form-control" id="deliveryDate">
-                        </div>
-                        <div class="form-group">
-                            <label for="paymentAmount">Amount to be Paid</label>
-                            <input type="number" class="form-control" id="paymentAmount">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit Order</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <!-- end container-fluid -->
     <x-dashboard.datatablejs />

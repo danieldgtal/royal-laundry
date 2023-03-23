@@ -122,11 +122,15 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="{{ route('staff.orders') }}">
-                            <i class="mdi mdi-black-mesa"></i>
+                        <a href="javascript: void(0);">
+                            <i class="mdi mdi-puzzle-outline"></i>
                             <span> Orders </span>
-                            {{-- <span class="menu-arrow"></span> --}}
+                            <span class="menu-arrow"></span>
                         </a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li><a href="{{ route('staff.pickups') }}">Pickups</a></li>
+                            <li><a href="{{ route('staff.orders') }}">Orders</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="javascript: void(0);">

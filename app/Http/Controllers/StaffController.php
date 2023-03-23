@@ -25,7 +25,17 @@ class StaffController extends Controller
     {
       return view('staff.items');
     }
-  
+    
+    public function pickups()
+    { 
+      return view('staff.pickups');
+    }
+
+    public function orders()
+    {
+      return view('staff.orders');
+    }
+    
     public function create()
     {
         //

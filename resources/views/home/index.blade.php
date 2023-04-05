@@ -52,10 +52,6 @@
         @include('home.partials.how-we-work')
         <!--How We Work End-->
 
-        <!--Testimonial One Start-->
-        @include('home.partials.testimonials')
-        <!--Testimonial One End-->
-
         <!--News One Start-->
         @include('home.partials.faq')
         <!--News One End-->
@@ -85,12 +81,13 @@
             <ul class="mobile-nav__contact list-unstyled">
                 <li>
                     <i class="fa fa-envelope"></i>
-                    <a href="mailto:needhelp@packageName__.com">help@royalchoicelaundry.com</a>
+                    <a href="mailto:support@deroyalchoiceng.com">support@deroyalchoiceng.com</a>
                 </li>
                 <li>
                     <i class="fa fa-phone-alt"></i>
-                    <a href="tel:(702)610-5981">+234 (702)610-5981</a>
-                    <a href="tel:(818)529-8359">+234 (818)529-8359</a>
+                    <a href="tel:(702)610-5981">+234(810)978-7915</a>
+                    <a href="tel:(818)529-8359">+234(704)552-9886</a>
+                    <a href="tel:(818)529-8359">+234(818)529-8359</a>
                 </li>
             </ul><!-- /.mobile-nav__contact -->
             <div class="mobile-nav__top">

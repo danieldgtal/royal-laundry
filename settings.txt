@@ -1,0 +1,21 @@
+database name: derousqu_deroyalchoice
+username: derousqu_user
+database user passowrd: s!+&_^+)rKDe
+
+email: support@deroyalchoiceng.com
+password: 7^)985=u~7!(
+
+<IfModule mod_rewrite.c>
+	Options *FollowSumlinks
+	RewriteEngine on
+	RewriteCond %{REQUEST_URI} !^public
+	RewriteRule ^(.*)$ public/$1 [L]
+<IfModule>
+
+cpanelusername: derousqu
+cpanelpassword: ByllrvnRih54
+deroyalchoiceng@gmail.com
+password:PrettyPretty234@
+
+chibuzor.obed@deroyalchoiceng.com
+chibuzor.obed

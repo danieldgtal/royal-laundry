@@ -8,7 +8,7 @@
                             <span class="icon-email"></span>
                         </div>
                         <div class="text">
-                            <p><a href="mailto:needhelp@company.com">help@royalchoicelaudry.com</a></p>
+                            <p><a href="mailto:support@deroyalchoiceng.com">support@deroyalchoiceng.com</a></p>
                         </div>
                     </li>
                     <li>
@@ -62,15 +62,7 @@
                         </li>
                         <li class="">
                             <a href="{{ route('home.services') }}">Services</a>
-                            {{-- <ul>
-                                <li><a href="services.html">Services</a></li>
-                                <li><a href="dry-cleaning.html">Dry Cleaning</a></li>
-                                <li><a href="steam-iron.html">Steam Iron</a></li>
-                                <li><a href="laundry-service.html">Laundry Service</a></li>
-                                <li><a href="stain-removal.html">Stain Removal</a></li>
-                                <li><a href="curtains-wash.html">Curtains Wash</a></li>
-                                <li><a href="commercial-laundry.html">Commercial Laundry</a></li>
-                            </ul> --}}
+
                         </li>
                         <li><a href="{{ route('home.contact') }}">Contact</a></li>
                         <li class="dropdown">
@@ -96,7 +88,8 @@
                         </div>
                         <div class="main-menu-wrapper__call-number">
                             <p>Call Anytime</p>
-                            <h5><a href="tel:+234(702)6105981">+234(702) 610 5981</a></h5>
+                            <h5><a href="tel:+234(702)6105981">+234(810) 978 7915</a></h5>
+                            <h5><a href="tel:+234(704)5529886">+234(704) 552 9886</a></h5>
                             <h5><a href="tel:+234(818)5298359">+234(818) 529 8359</a></h5>
                         </div>
                     </div>

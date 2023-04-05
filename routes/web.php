@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Invoice;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
@@ -55,39 +56,61 @@ Route::get('/redirect', [CustomAuthenticatedSessionController::class, 'redirectT
 
 /* User section */
 Route::group(['prefix' => 'user', 'middleware' => ['auth','user','verified']], function (){
+ 
   /*user dashboard */
   Route::get('/',[UserController::class, 'index'])->name('user.dashboard');
   Route::get('dashboard',[UserController::class, 'index'])->name('user.dashboard');
   Route::get('notification',[UserController::class, 'notification'])->name('user.notification');
   Route::get('schedule',[UserController::class, 'schedule'])->name('user.schedule');
   Route::get('orders',[UserController::class, 'orders'])->name('user.orders');
-  Route::get('invoice',[UserController::class, 'invoice'])->name('user.invoice');
   Route::get('transactions',[UserController::class, 'transactions'])->name('user.transactions');
   Route::get('checkout',[UserController::class, 'checkout'])->name('user.checkout');
   Route::get('feedback',[UserController::class, 'feedback'])->name('user.feedback');
   Route::get('profile',[UserController::class, 'profile'])->name('user.profile');
+  Route::get('booking',[UserController::class,'newOrder'])->name('user.booking');
+  Route::get('cart',[UserController::class, 'cart'])->name('user.view-cart');
+  Route::get('invoice',[UserController::class, 'invoice'])->name('user.invoice');
+  Route::get('/order-invoice', \App\Http\Livewire\PreviewOrder::class )->name('user.order-invoice');
+
+
 });
+
+
 
 /* Staff section */
 Route::group(['middleware' => ['auth','staff'], 'prefix' => 'staff' ], function (){
   /*staff dashboard */
   Route::get('/',[StaffController::class, 'index'])->name('staff.dashboard');
   Route::get('dashboard',[StaffController::class, 'index'])->name('staff.dashboard');
-  Route::get('new-customer',[CustomerController::class, 'create'])->name('staff.new-customer');
-  Route::post('/new-customer',[CustomerController::class, 'store'])->name('staff.new-customer');
-  Route::get('all-customers',[CustomerController::class, 'index'])->name('staff.all-customers');
-  Route::get('items', [StaffController::class,'itemsList'])->name('staff.items');
+  Route::get('customers',[StaffController::class, 'customers'])->name('staff.customers');
   Route::get('pickups', [StaffController::class,'pickups'])->name('staff.pickups');
   Route::get('orders', [StaffController::class,'orders'])->name('staff.orders');
-  Route::get('invoices', \App\Http\Livewire\Staff\Invoices::class)->name('staff.invoices');
-  Route::get('inventories', \App\Http\Livewire\Staff\Inventories::class)->name('staff.inventories');
+  Route::get('invoices', [StaffController::class, 'invoices'])->name('staff.all-invoices');
+  Route::get('search-invoice',[StaffController::class,'searchInvoice'])->name('staff.search-invoice');
+  Route::get('gen-invoice', [StaffController::class,'generateInvoice'])->name('staff.gen-invoice');
+  Route::get('inventories', [StaffController::class,'inventories'])->name('staff.inventories');
+  Route::get('categories',[StaffController::class,'categoriesList'])->name('staff.categories');
+  Route::get('items',[StaffController::class,'itemsList'])->name('staff.items');
+  Route::get('reports',[StaffController::class,'reports'])->name('staff.reports');
+  Route::get('weighbill',[StaffController::class,'weighbill'])->name('staff.weighbill');
+  Route::get('profile',[StaffController::class,'profile'])->name('staff.profile');
+  Route::get('generated/invoice',[StaffController::class,'cart'])->name('staff.view_generated_invoice');
+  Route::get('/order/view', [\App\Http\Livewire\Staff\PreviewOrder::class, 'orderView'] )->name('staff.view-order');
+  Route::get('/invoice/view', [\App\Http\Livewire\Staff\ViewGeneratedInvoice::class, 'invoiceView'] )->name('staff.view-invoice');
+
 });
 
 /* Owner section */
-Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin'] ], function (){
+Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin' ], function (){
   /*owner  dashboard */
-  Route::get('/',[AdminController::class, 'index'])->name('admin.dashboard');
-  Route::get('dashboard',[AdminController::class, 'index'])->name('admin.dashboard');
+  Route::get('/',[AdminController::class, 'index'])->name('admin.home');
+  Route::get('home',[AdminController::class, 'index'])->name('admin.home');
+  Route::get('staff',[AdminController::class, 'staffs'])->name('admin.staffs');
+  Route::get('invoices',[AdminController::class, 'invoices'])->name('admin.invoices');
+  Route::get('orders',[AdminController::class, 'invoices'])->name('admin.orders');
+  Route::get('reports',[AdminController::class, 'reports'])->name('admin.reports');
+  Route::get('inventories',[AdminController::class, 'inventories'])->name('admin.inventories');
+  Route::get('profile',[AdminController::class, 'profile'])->name('admin.profile');
 });
 
 

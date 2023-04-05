@@ -24,17 +24,14 @@
         <div class="col-xl-6">
             <label for="phone">Phone</label>
             <input type="text" placeholder="Enter your phone number" data-mask="(999) 999-9999" class="form-control"
-                autocomplete="off" maxlength="14" name="phone" value="{{ old('phone') }}" required>
+                maxlength="14" name="phone" value="{{ old('phone') }}" required>
         </div>
         <div class="col-xl-6">
             <label for="dateOfBirth">Date Of Birth</label>
             <div class="input-group">
-                <input type="text" class="form-control" name="dob" value="{{ old('dob') }}"
-                    placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true">
+                <input type="date" class="form-control" name="dob" value="{{ old('dob') }}"
+                    placeholder="dd/mm/yyyy">
 
-                <div class="input-group-append">
-                    <span class="input-group-text"><i class="icon-calender"></i></span>
-                </div>
             </div>
         </div>
     </div>
@@ -94,7 +91,7 @@
     <div class="row">
         <div class="col-xl-6">
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password"
+            <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="off"
                 class="form-control @error('password') is-invalid @enderror">
             @error('password')
                 <span class="invalid-feedback" role="alert">
@@ -105,7 +102,7 @@
         <div class="col-xl-6">
             <label for="password_confirmation">Confirm Password</label>
             <input type="password" id="password_confirmation" name="password_confirmation"
-                placeholder="Confirm your password"
+                placeholder="Confirm your password" autocomplete="off"
                 class="form-control @error('password_confirmation') is-invalid @enderror">
             @error('password_confirmation')
                 <span class="invalid-feedback" role="alert">

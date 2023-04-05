@@ -1,7 +1,132 @@
 <div class="row">
+    <!-- Order Modal -->
+    <div wire:ignore.self class="modal fade" id="editOrderModal" tabindex="-1" role="dialog"
+        aria-labelledby="orderModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderModalLabel">Order Information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form wire:submit.prevent="updateOrder">
+                        <div class="form-group">
+                            <label for="order-id">Order ID</label>
+                            <input type="text" class="form-control" wire:model="order_id" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="customer-name">Customer Name</label>
+                            <input type="text" class="form-control" wire:model="customer_name" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="order-date">Order Date</label>
+                            <input type="date" class="form-control" placeholder="mm/dd/yyyy"
+                                data-date-autoclose="true" wire:model="order_date" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="pickup-date">Pickup Date</label>
+                            <input type="date" class="form-control" wire:model="pickup_date" placeholder="mm/dd/yyyy"
+                                onchange="this.dispatchEvent(new InputEvent('input'))">
+                            @error('pickup_date')
+                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="delivery-date">Delivery Date</label>
+                            <input type="date" class="form-control" placeholder="mm/dd/yyyy"
+                                data-date-autoclose="true" onchange="this.dispatchEvent(new InputEvent('input'))"
+                                wire:model="delivery_date">
+                            @error('delivery_date')
+                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="payment-status">Payment Status</label>
+                            <select class="form-control" id="payment-status" wire:model="payment_status">
+                                <option value="unpaid">unpaid</option>
+                                <option value="paid">paid</option>
+                            </select>
+                            @error('payment_status')
+                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="order-status">Order Status</label>
+                            <select class="form-control" id="order-status" wire:model="order_status">
+                                <option value="pending">pending</option>
+                                <option value="processing">processing</option>
+                                <option value="completed">completed</option>
+                                <option value="cancelled">cancelled</option>
+                            </select>
+                            @error('order_status')
+                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="total-cost">Total Cost</label>
+                            <input type="text" class="form-control" wire:model="total_cost" disabled>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" wire:click.prevent="updateOrder">Save
+                        changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add Item Modal -->
+    <div wire:ignore.self class="modal fade" id="addToInvoice" tabindex="-1" data-backdrop="static" role="dialog"
+        data-keyboard="false" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Invoice</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form wire:submit.prevent="addToInvoice">
+                        <div class="formgroup">
+                            <label for="invoiceId">Invoice ID: </label>
+                            <input type="text" class="form-control" wire:model="invoice_id" disabled>
+                            @error('invoice_id')
+                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <label for="item-category">Payment Method</label>
+                                <select id="" class="form-control" wire:model="payment_method">
+                                    <option value="">--Payment Method--</option>
+                                    <option value="cash">Cash</option>
+                                    <option value="transfer">Transfer</option>
+                                </select>
+                                @error('payment_method')
+                                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" wire:click="addToInvoice">Add Invoice
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="col-12">
         <div class="card-box">
-            <h4 class="header-title">Default Example</h4>
+            <h4 class="header-title">Order Management</h4>
             <p class="sub-header">
                 Staff members can view and manage laundry orders placed by customers. This page typically displays a
                 list of all active orders,including the OrderID customer name, order date and all other order
@@ -10,11 +135,15 @@
                 manage laundry orders, reduce errors, and provide a high level of service to customers.
             </p>
 
+            @if (session()->has('message'))
+                <div class="alert alert-success text-center">{{ session('message') }}</div>
+            @endif
+
             <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                 <div class="row">
                     <div class="col-sm-12 col-md-6">
-                        <div class="dataTables_length" id="datatable_length"><label>Show <select name="datatable_length"
-                                    aria-controls="datatable"
+                        <div class="dataTables_length" id="datatable_length"><label>Show <select
+                                    name="datatable_length" aria-controls="datatable" wire:model="per_page"
                                     class="custom-select custom-select-sm form-control form-control-sm">
                                     <option value="10">10</option>
                                     <option value="25">25</option>
@@ -30,147 +159,85 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12 table-responsive">
-                        <table id="datatable"
-                            class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline"
-                            style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid"
-                            aria-describedby="datatable_info">
+
+                        <table class="table">
                             <thead>
-                                <tr role="row">
-                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1"
-                                        colspan="1" style="width: 80px;" aria-sort="ascending"
-                                        aria-label="Name: activate to sort column descending">Name</th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1"
-                                        colspan="1" style="width: 242px;"
-                                        aria-label="Position: activate to sort column ascending">Position</th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1"
-                                        colspan="1" style="width: 113px;"
-                                        aria-label="Office: activate to sort column ascending">Office</th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1"
-                                        colspan="1" style="width: 54px;"
-                                        aria-label="Age: activate to sort column ascending">Age</th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1"
-                                        colspan="1" style="width: 108px;"
-                                        aria-label="Start date: activate to sort column ascending">Start date</th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1"
-                                        colspan="1" style="width: 88px;"
-                                        aria-label="Salary: activate to sort column ascending">Salary</th>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Order ID</th>
+                                    <th>Customer Name</th>
+                                    <th>Order Date</th>
+                                    <th>Pickup Date</th>
+                                    <th>Delivery Date</th>
+                                    <th>Payment Status</th>
+                                    <th>Order Status</th>
+                                    <th>Total Cost</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
-
-
                             <tbody>
-                                <tr role="row" class="odd">
-                                    <td tabindex="0" class="sorting_1">Airi Satou</td>
-                                    <td>Accountant</td>
-                                    <td style="">Tokyo</td>
-                                    <td style="">33</td>
-                                    <td style="">2008/11/28</td>
-                                    <td style="">$162,700</td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class="sorting_1" tabindex="0">Angelica Ramos</td>
-                                    <td>Chief Executive Officer (CEO)</td>
-                                    <td style="">London</td>
-                                    <td style="">47</td>
-                                    <td style="">2009/10/09</td>
-                                    <td style="">$1,200,000</td>
-                                </tr>
-                                <tr role="row" class="odd">
-                                    <td tabindex="0" class="sorting_1">Ashton Cox</td>
-                                    <td>Junior Technical Author</td>
-                                    <td style="">San Francisco</td>
-                                    <td style="">66</td>
-                                    <td style="">2009/01/12</td>
-                                    <td style="">$86,000</td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class="sorting_1" tabindex="0">Bradley Greer</td>
-                                    <td>Software Engineer</td>
-                                    <td style="">London</td>
-                                    <td style="">41</td>
-                                    <td style="">2012/10/13</td>
-                                    <td style="">$132,000</td>
-                                </tr>
-                                <tr role="row" class="odd">
-                                    <td class="sorting_1" tabindex="0">Brenden Wagner</td>
-                                    <td>Software Engineer</td>
-                                    <td style="">San Francisco</td>
-                                    <td style="">28</td>
-                                    <td style="">2011/06/07</td>
-                                    <td style="">$206,850</td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td tabindex="0" class="sorting_1">Brielle Williamson</td>
-                                    <td>Integration Specialist</td>
-                                    <td style="">New York</td>
-                                    <td style="">61</td>
-                                    <td style="">2012/12/02</td>
-                                    <td style="">$372,000</td>
-                                </tr>
-                                <tr role="row" class="odd">
-                                    <td class="sorting_1" tabindex="0">Bruno Nash</td>
-                                    <td>Software Engineer</td>
-                                    <td style="">London</td>
-                                    <td style="">38</td>
-                                    <td style="">2011/05/03</td>
-                                    <td style="">$163,500</td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class="sorting_1" tabindex="0">Caesar Vance</td>
-                                    <td>Pre-Sales Support</td>
-                                    <td style="">New York</td>
-                                    <td style="">21</td>
-                                    <td style="">2011/12/12</td>
-                                    <td style="">$106,450</td>
-                                </tr>
-                                <tr role="row" class="odd">
-                                    <td class="sorting_1" tabindex="0">Cara Stevens</td>
-                                    <td>Sales Assistant</td>
-                                    <td style="">New York</td>
-                                    <td style="">46</td>
-                                    <td style="">2011/12/06</td>
-                                    <td style="">$145,600</td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td tabindex="0" class="sorting_1">Cedric Kelly</td>
-                                    <td>Senior Javascript Developer</td>
-                                    <td style="">Edinburgh</td>
-                                    <td style="">22</td>
-                                    <td style="">2012/03/29</td>
-                                    <td style="">$433,060</td>
-                                </tr>
+                                @if ($orders->count() > 0)
+                                    @foreach ($orders as $order)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $order->order_id }}</td>
+                                            <td>{{ $order->customer_name }}</td>
+                                            <td>{{ $order->order_date }}</td>
+                                            <td>{{ $order->pickup_date }}</td>
+                                            <td>{{ $order->delivery_date }}</td>
+                                            <td>{{ $order->payment_status }}</td>
+                                            <td>{{ $order->order_status }}</td>
+                                            <td>&#8358;{{ $order->total_cost }}</td>
+                                            <td>
+                                                <button data-toggle="modal" data-target="#editOrderModal"
+                                                    wire:click.prevent="editOrder({{ $order->order_id }})"><i
+                                                        class="fa fa-edit"
+                                                        style="font-size: 25px; margin-bottom: 4px;"></i>
+                                                </button>
+
+                                                <div class="dropdown">
+                                                    <button class="btn btn-sm btn-dark dropdown-toggle" type="button"
+                                                        id="dropdownMenuButton" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a type="button" class="btn btn-dark dropdown-item"
+                                                            wire:click="editInvoice({{ $order->order_id }})">
+                                                            Issue Invoice
+                                                        </a>
+                                                        <a type="button" class="btn btn-dark dropdown-item"
+                                                            wire:click="orderView({{ $order->order_id }})">
+                                                            view Order
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td>No order Found</td>
+                                    </tr>
+                                @endif
+                                <!-- more rows... -->
                             </tbody>
                         </table>
+
                     </div>
                 </div>
+                <!-- Pagination buttons -->
                 <div class="row">
                     <div class="col-sm-12 col-md-5">
-                        <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1
-                            to 10 of 57 entries</div>
+                        <div class="dataTables_info" id="datatable-buttons_info" role="status" aria-live="polite">
+                            Showing {{ $orders->firstItem() }} to {{ $orders->lastItem() }} of {{ $orders->total() }}
+                            entries
+                        </div>
                     </div>
                     <div class="col-sm-12 col-md-7">
-                        <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
-                            <ul class="pagination">
-                                <li class="paginate_button page-item previous disabled" id="datatable_previous"><a
-                                        href="#" aria-controls="datatable" data-dt-idx="0" tabindex="0"
-                                        class="page-link">Previous</a></li>
-                                <li class="paginate_button page-item active"><a href="#"
-                                        aria-controls="datatable" data-dt-idx="1" tabindex="0"
-                                        class="page-link">1</a></li>
-                                <li class="paginate_button page-item "><a href="#" aria-controls="datatable"
-                                        data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-                                <li class="paginate_button page-item "><a href="#" aria-controls="datatable"
-                                        data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
-                                <li class="paginate_button page-item "><a href="#" aria-controls="datatable"
-                                        data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
-                                <li class="paginate_button page-item "><a href="#" aria-controls="datatable"
-                                        data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
-                                <li class="paginate_button page-item "><a href="#" aria-controls="datatable"
-                                        data-dt-idx="6" tabindex="0" class="page-link">6</a></li>
-                                <li class="paginate_button page-item next" id="datatable_next"><a href="#"
-                                        aria-controls="datatable" data-dt-idx="7" tabindex="0"
-                                        class="page-link">Next</a></li>
-                            </ul>
+                        <div class="d-flex justiy-content-center flex-wrap">
+                            {{ $orders->links('vendor.livewire.bootstrap') }}
                         </div>
                     </div>
                 </div>
@@ -178,3 +245,17 @@
         </div>
     </div>
 </div>
+@push('scripts')
+    <script>
+        window.addEventListener('close-modal', event => {
+            $('#editOrderModal').modal('hide');
+            $('#addToInvoice').modal('hide');
+        });
+        window.addEventListener('show-edit-invoice-modal', event => {
+            $('#addToInvoice').modal('show');
+        })
+
+        const script = @this.get('eventData');
+        eval(script);
+    </script>
+@endpush

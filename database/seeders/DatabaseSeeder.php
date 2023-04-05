@@ -17,12 +17,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+      
       // LaundryItem::factory(100)->create();
       $this->call(UsersTableSeeder::class);
       $this->call(BranchSeeder::class);
-      $this->call(LaundryItemSeeder::class);
-      // $this->call(PickupSeeder::class);
-
-      
+      $this->call(CategoriesTableSeeder::class);
+      $this->call(ItemsTableSeeder::class);
+      $this->call(StaffSeeder::class);
+  
     }
 }

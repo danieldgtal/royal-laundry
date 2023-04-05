@@ -25,14 +25,12 @@
                                     <span class="icon-washing-machine-1"></span>
                                 </div>
                                 <h4 class="why-choose-one__title">Clean Result</h4>
-                                {{-- <p class="why-choose-one__text-2"></p> --}}
                             </li>
                             <li>
                                 <div class="why-choose-one__icon">
                                     <span class="icon-washing"></span>
                                 </div>
                                 <h4 class="why-choose-one__title">Fast Delivery</h4>
-                                {{-- <p class="why-choose-one__text-2">.</p> --}}
                             </li>
                         </ul>
                     </div>

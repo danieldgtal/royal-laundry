@@ -9,7 +9,6 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 
 
-
 class CustomAuthenticatedSessionController extends AuthenticatedSessionController
 {
     public function login(Request $request)

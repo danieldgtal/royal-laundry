@@ -64,9 +64,9 @@
                             <div class="col-6">
                                 <label for="laundryItems">Pickup Status</label>
                                 <select class="form-control" wire:model="u_pickup_status">
-                                    <option value="0">Pending</option>
-                                    <option value="1">Completed</option>
-                                    <option value="2">Canceled</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="cancelled">Cancelled</option>
                                 </select>
                             </div>
                         </div>
@@ -144,29 +144,19 @@
                             role="grid" aria-describedby="datatable-buttons_info">
                             <thead>
                                 <tr role="row">
-                                    <th class="sorting_asc" tabindex="0" aria-controls="datatable-buttons"
-                                        rowspan="1" colspan="1" style="width: 156px" aria-sort="ascending"
-                                        aria-label="Name: activate to sort column descending">
+                                    <th>
                                         Pickup ID
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
-                                        rowspan="1" colspan="1" style="width: 242px"
-                                        aria-label="Position: activate to sort column ascending">
+                                    <th>
                                         Customer Name
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
-                                        rowspan="1" colspan="1" style="width: 113px"
-                                        aria-label="Office: activate to sort column ascending">
+                                    <th>
                                         Pickup Date
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
-                                        rowspan="1" colspan="1" style="width: 54px"
-                                        aria-label="Age: activate to sort column ascending">
+                                    <th>
                                         Pickup Status
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatable-buttons"
-                                        rowspan="1" colspan="1" style="width: 88px"
-                                        aria-label="Salary: activate to sort column ascending">
+                                    <th>
                                         Action
                                     </th>
                                 </tr>
@@ -190,15 +180,13 @@
                                             </td>
                                             <td>{{ $item->pickup_date }}</td>
                                             <td>
-                                                {{ $item->pickup_status == 0 ? 'Pending' : ($item->pickup_status == 1 ? 'Completed' : 'Cancelled') }}
+                                                {{ $item->pickup_status }}
                                             </td>
                                             <td>
                                                 <button class="btn btn-light waves-effect"
                                                     wire:click.prevent="viewPickUpModal({{ $item->id }})"><i
                                                         class="fa fa-eye"></i></button>
-                                                {{-- <button type="button" class="btn btn-light waves-effect"
-                                                    wire:click.prevent="deleteConfirm({{ $item->id }})"><i
-                                                        class="fa fa-check"></i></button> --}}
+
                                             </td>
                                         </tr>
                                     @endforeach

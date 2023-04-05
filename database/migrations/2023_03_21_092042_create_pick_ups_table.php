@@ -13,20 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pick_ups', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('pickup_id');
-            $table->string('pickup_date');
-            $table->text('pickup_items')->nullable();
-            $table->integer('pickup_status');
-            $table->text('pickup_note')->nullable();
-            $table->timestamps();
+      Schema::create('pick_ups', function (Blueprint $table) {
+          $table->id();
+          $table->unsignedBigInteger('user_id');
+          $table->string('pickup_id');
+          $table->unsignedBigInteger('branch_id');
+          $table->string('pickup_date');
+          $table->text('pickup_items')->nullable();
+          $table->enum('pickup_status',['pending','processing','completed','cancelled']);
+          $table->text('pickup_note')->nullable();
+          $table->timestamps();
 
-            // Define the foreign key
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+          // Define the foreign key
+          $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
+          $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-        });
+      });
 
 
     }

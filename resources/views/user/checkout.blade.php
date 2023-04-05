@@ -10,9 +10,7 @@
         <x-dashboard.dashboard-header url="{{ $page }}" />
 
         <!-- end page title -->
-
-
-
+        <livewire:invoice />
         <!-- end row -->
 
     </div>

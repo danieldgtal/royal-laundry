@@ -69,7 +69,9 @@
                             </div>
                             <div class="welcome-one__call-content">
                                 <p>Call Us Anytime</p>
-                                <a href="tel:+234(702)6105981">+234(702) 610 5981</a>
+                                <p class="cta-one__number"><a href="tel:+234(810)978 7915">+234(810)978 7915</a></p>
+                                <p class="cta-one__number"><a href="tel:+234(704)552 9886">+234(704)552 9886</a></p>
+                                <p class="cta-one__number"><a href="tel:+234(818)529 8359">+234(818)529 8359</a></p>
                             </div>
                         </div>
                     </div>

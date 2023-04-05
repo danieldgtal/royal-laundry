@@ -45,7 +45,7 @@
                                     <span class="icon-email"></span>
                                 </div>
                                 <div class="text">
-                                    <a href="mailto:care@royalchoicelaundry.com">care@royalchoicelaundry.com</a>
+                                    <a href="mailto:support@deroyalchoiceng.com">support@deroyalchoiceng.com</a>
                                 </div>
                             </li>
                             <li>
@@ -53,6 +53,8 @@
                                     <span class="icon-telephone"></span>
                                 </div>
                                 <div class="text">
+                                    <a href="tel:+234(818)5298359">+234(810) 978 7915</a>
+                                    <a href="tel:+234(818)5298359">+234(704) 552 9886</a>
                                     <a href="tel:+234(818)5298359">+234(818) 529 8359</a>
                                 </div>
                             </li>

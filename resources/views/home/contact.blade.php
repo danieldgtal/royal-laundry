@@ -50,8 +50,8 @@
                                 <ul class="list-unstyled">
                                     <li>
                                         <h4 class="mt-3">Phone Lines</h4>
-                                        <p>+234(702) 610 5981 </p>
-                                        <p>+234(818) 529 8359</p>
+                                        <p>+234(810) 978 7915</p>
+                                        <p>+234(704) 552 9886</p>
                                     </li>
                                     <li>
                                         <h4 class="mt-3">Address</h4>
@@ -78,7 +78,6 @@
                             </div>
                             <div>
                                 <p>
-
                                     If you need to drop off or pick up laundry outside of our regular business hours,
                                     please let us know and we'll do our best to accommodate your schedule.</p>
                                 <p>We offer a variety of laundry services, including washing, drying, folding, and
@@ -129,7 +128,6 @@
             </div>
         </section>
         <!--Contact Page End-->
-
         <!--Contact page Google Map Start-->
         <section class="contact-page-google-map">
             <div class="contact-page-google-map__inner text-center">
@@ -144,7 +142,6 @@
             </div>
         </section>
         <!--Contact page Google Map End-->
-
         <!--Contact Info Start-->
         <section class="contact-info">
             <div class="container">
@@ -154,8 +151,9 @@
                             <span class="icon-telephone"></span>
                         </div>
                         <p>
-                            <a href="tel:+234(702) 610 5981" class="contact-info__number-1">+234(702) 610 5981</a>
-                            <a href="tel:+234(818) 529 8359" class="contact-info__number-2">+234(818) 529 8359</a>
+                            <a href="tel:+234(702)978 7915" class="contact-info__number-1">+234(810)978 7915</a>
+                            <a href="tel:+234(702)552 9886" class="contact-info__number-2">+234(704)552 9886</a>
+                            <a href="tel:+234(818)529 8359" class="contact-info__number-2">+234(818)529 8359</a>
                         </p>
                     </li>
                     <li class="contact-info__single">
@@ -163,10 +161,10 @@
                             <span class="icon-email"></span>
                         </div>
                         <p>
-                            <a href="mailto:care@royalchoicelaundry.com"
-                                class="contact-info__mail-1">care@royalchoicelaundry.com</a>
-                            <a href="mailto:support@royalchoicelaundry.com"
-                                class="contact-info__mail-2">support@royalchoicelaundry.com</a>
+                            <a href="mailto:support@deroyalchoiceng.com"
+                                class="contact-info__mail-1">support@deroyalchoiceng.com</a>
+                            <a href="mailto:support@deroyalchoiceng.com"
+                                class="contact-info__mail-2">support@deroyalchoiceng.com</a>
                         </p>
                     </li>
                     <li class="contact-info__single">
@@ -205,12 +203,12 @@
             <ul class="mobile-nav__contact list-unstyled">
                 <li>
                     <i class="fa fa-envelope"></i>
-                    <a href="mailto:care@royalchoicelaundry.com">care@royalchoicelaundry.com</a>
+                    <a href="mailto:support@deroyalchoiceng.com">support@deroyalchoiceng.com</a>
                 </li>
                 <li>
                     <i class="fa fa-phone-alt"></i>
-                    <a href="tel:(702)610-5981">+234 (702)610-5981</a>
-                    <a href="tel:(818)529-8359">+234 (818)529-8359</a>
+                    <a href="tel:(810)978-7915">+234 (810)978-7915</a>
+                    <a href="tel:(704)552-9886">+234 (704)552-9886</a>
                 </li>
             </ul><!-- /.mobile-nav__contact -->
             <div class="mobile-nav__top">

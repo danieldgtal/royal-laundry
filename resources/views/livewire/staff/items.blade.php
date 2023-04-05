@@ -45,6 +45,16 @@
                         </div>
                         <div class="form-group">
                             <div>
+                                <label for="item-priceunit">Discounted Price</label>
+                                <input type="number" class="form-control" id="item-priceunit"
+                                    wire:model="item_discounted_price" placeholder="Enter item price">
+                                @error('item_discounted_price')
+                                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
                                 <label for="item-packageunit">Package Unit</label>
                                 <input type="number" class="form-control" id="item-packageunit"
                                     wire:model.defer="package_unit" placeholder="Enter package unit">
@@ -102,6 +112,16 @@
                                 <input type="number" class="form-control" id="item-priceunit"
                                     wire:model="item_price" placeholder="Enter item price">
                                 @error('item_price')
+                                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <label for="item-priceunit">Discounted Price</label>
+                                <input type="number" class="form-control" id="item-priceunit"
+                                    wire:model="item_discounted_price" placeholder="Enter item price">
+                                @error('item_discounted_price')
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -197,6 +217,11 @@
                                     Item Price
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1"
+                                    colspan="1" style="width: 108px"
+                                    aria-label="Start date: activate to sort column ascending">
+                                    Discounted Price
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1"
                                     colspan="1" style="width: 54px"
                                     aria-label="Age: activate to sort column ascending">
                                     Package Unit
@@ -228,6 +253,7 @@
                                         <td>{{ $item->item_name }}</td>
                                         <td>{{ $item->item_category }}</td>
                                         <td>&#8358;{{ $item->item_price }}</td>
+                                        <td>&#8358;{{ $item->item_discounted_price }}</td>
                                         <td>{{ $item->package_unit }}</td>
                                         <td>{{ $item->created_at }}</td>
                                         <td>{{ $item->updated_at }}</td>

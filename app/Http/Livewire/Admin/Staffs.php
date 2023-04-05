@@ -6,8 +6,8 @@ use Livewire\Component;
 
 class Staffs extends Component
 {
-    public function render()
-    {
-        return view('livewire.admin.staffs');
-    }
+  public function render()
+  {
+    return view('livewire.admin.staffs');
+  }
 }

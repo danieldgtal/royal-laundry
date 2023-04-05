@@ -56,6 +56,19 @@
                                 <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label for="">PickUp Branch</label>
+                            <select name="" id="" wire:model.lazy="pickup_branch" class="form-control"
+                                required>
+                                <option value="">--Select Branch--</option>
+                                @foreach ($branches as $branch)
+                                    <option value="{{ $branch->id }}">{{ $branch->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('pickup_branch')
+                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -91,6 +104,7 @@
                                 <th>#</th>
                                 <th>PickupID</th>
                                 <th>Date</th>
+                                <th>Branch</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -99,12 +113,20 @@
                             @if ($items->count() > 0)
                                 @foreach ($items as $item)
                                     <tr>
-                                        <td>{{ $item->id }}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->pickup_id }}</td>
                                         <td>{{ $item->pickup_date }}</td>
+                                        <td>
+                                            @php
+                                                $itemBranch = DB::table('branches')
+                                                    ->where('id', $item->branch_id)
+                                                    ->first();
+                                            @endphp
+                                            {{ $itemBranch->name }}
+                                        </td>
                                         <td><span
-                                                class="badge {{ $item->pickup_status == 0 ? 'bg-warning' : ($item->pickup_status == 1 ? 'bg-success' : 'bg-danger') }}">
-                                                {{ $item->pickup_status == 0 ? 'Pending' : ($item->pickup_status == 1 ? 'Completed' : 'Cancelled') }}
+                                                class="badge {{ $item->pickup_status == 'pending' ? 'bg-warning' : ($item->pickup_status == 'completed' ? 'bg-success' : ($item->pickup_status == 'cancelled' ? 'bg-danger' : 'bg-secondary')) }}">
+                                                {{ $item->pickup_status }}
                                             </span>
                                         </td>
                                         <td>N/A</td>
@@ -112,7 +134,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="4" style="text-align: center">
+                                    <td colspan="6" style="text-align: center">
                                         No Pickup Found
                                     </td>
                                 </tr>

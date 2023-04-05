@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Branch;
 use App\Models\PickUp;
 use DateTime;
 use Livewire\Component;
@@ -13,7 +14,7 @@ class UserPickup extends Component
   protected $paginationTheme = 'bootstrap';
 
   public $per_page = 10;
-  public $pickup_date, $pickup_time,$pickup_items, $pickup_note;
+  public $pickup_date, $pickup_time,$pickup_items, $pickup_note,$pickup_branch;
 
   public function addUserPickUp()
   {
@@ -22,6 +23,7 @@ class UserPickup extends Component
       'pickup_time' => 'required|date_format:H:i',
       'pickup_items' => 'required|string|max:200',
       'pickup_note' => 'required|string|max:150',
+      'pickup_branch' => 'required|integer|max:2',
     ]);
   
     // Convert the validated date to MySQL date format
@@ -43,9 +45,10 @@ class UserPickup extends Component
     $pickup->user_id = auth()->user()->id;
     $pickup->pickup_id = $this->generatePickUpId($pickup->user_id);
     $pickup->pickup_date = $mysql_datetime;
-    $pickup->pickup_status = 0;
+    $pickup->pickup_status = 'pending';
     $pickup->pickup_note = $this->pickup_note;
     $pickup->pickup_items = $this->pickup_items;
+    $pickup->branch_id = $this->pickup_branch;
 
     $pickup->save();
 
@@ -55,6 +58,7 @@ class UserPickup extends Component
     $this->pickup_note = '';
     $this->pickup_items = '';
     $this->pickup_time = '';
+    $this->pickup_branch = '';
 
     //Hide modal after pickup submission
     $this->dispatchBrowserEvent('close-modal');
@@ -64,7 +68,8 @@ class UserPickup extends Component
   public static function generatePickUpId($userId)
   {
     // Get the current date and time
-    $dateTime = date('Ymd');
+    /*extra security measure by checking if generated id already exist in database and generate another */
+    $dateTime = date('md');
 
     $randomNumber = str_pad(mt_rand(1, 9999), 4, '0', STR_PAD_LEFT);
 
@@ -81,9 +86,11 @@ class UserPickup extends Component
     $items = PickUp::where('user_id', $authUser->id)
     ->latest()
     ->paginate($this->per_page);
-
+    $branches = Branch::all();
+    
     return view('livewire.user-pickup',[
-      'items' => $items
+      'items' => $items,
+      'branches' => $branches,
     ]);
   }
 }

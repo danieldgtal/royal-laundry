@@ -23,7 +23,7 @@ class UserController extends Controller
        
         return view('user.dashboard');
     }
-
+ 
     public function notification()
     {
       return view ('user.notification');
@@ -38,7 +38,7 @@ class UserController extends Controller
     {
       return view('user.orders');
     }
-
+ 
     public function invoice()
     {
       return view('user.invoice');
@@ -52,6 +52,12 @@ class UserController extends Controller
     {
       return view('user.checkout');
     }
+
+    public function newOrder()
+    {
+      return view('user.booking');
+    }
+
     public function feedback()
     {
       return view('user.feedback');
@@ -64,6 +70,11 @@ class UserController extends Controller
       return view('user.profile', [
         'user' => $userObject,
       ]);
+    }
+
+    public function cart()
+    {
+      return view('user.view-cart');
     }
 
     public function create()

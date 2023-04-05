@@ -84,46 +84,50 @@
                 @if (auth()->check() && auth()->user()->user_type === '1')
                     <li>
                         <a href="{{ route('staff.dashboard') }}">
-                            <i class="mdi mdi-format-underline"></i>
+                            <i class="mdi mdi-view-dashboard"></i>
                             <span> Dashboard </span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('staff.items') }}">
-                            <i class="mdi mdi-package-variant-closed"></i>
-                            <span>Manage Items </span>
-                            {{-- <span class="menu-arrow"></span> --}}
+                        <a href="javascript: void(0);">
+                            <i class="fa fa-list"></i>
+                            <span>Items & Categories</span>
+                            <span class="menu-arrow"></span>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="{{ route('staff.categories') }}">Categories</a></li>
+                                <li><a href="{{ route('staff.items') }}">Items</a></li>
+                            </ul>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('staff.invoices') }}">
-                            <i class="mdi mdi-format-underline"></i>
-                            <span> Invoicing </span>
-                            {{-- <span class="menu-arrow"></span> --}}
+                        <a href="javascript: void(0);">
+                            <i class="fa fa-file"></i>
+                            <span>Invoicing</span>
+                            <span class="menu-arrow"></span>
+
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="{{ route('staff.all-invoices') }}">All Invoices</a></li>
+                                <li><a href="{{ route('staff.gen-invoice') }}">Generate Invoice</a></li>
+                                <li><a href="{{ route('staff.search-invoice') }}">Search Invoice</a></li>
+                            </ul>
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('staff.inventories') }}">
-                            <i class="mdi mdi-package-variant-closed"></i>
+                            <i class="fa fa-tasks"></i>
                             <span> Manage Inventory </span>
                             {{-- <span class="menu-arrow"></span> --}}
                         </a>
-
                     </li>
                     <li>
-                        <a href="javascript: void(0);">
-                            <i class="mdi mdi-puzzle-outline"></i>
+                        <a href="{{ route('staff.customers') }}">
+                            <i class="fa fa-users"></i>
                             <span> Manage Customers </span>
-                            <span class="menu-arrow"></span>
                         </a>
-                        <ul class="nav-second-level" aria-expanded="false">
-                            <li><a href="{{ route('staff.all-customers') }}">All Customer</a></li>
-                            <li><a href="{{ route('staff.new-customer') }}">Create Customer</a></li>
-                        </ul>
                     </li>
                     <li>
                         <a href="javascript: void(0);">
-                            <i class="mdi mdi-puzzle-outline"></i>
+                            <i class="fa fa-truck"></i>
                             <span> Orders </span>
                             <span class="menu-arrow"></span>
                         </a>
@@ -133,14 +137,14 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript: void(0);">
-                            <i class="mdi mdi-file-document-box-check-outline"></i>
+                        <a href="{{ route('staff.reports') }}">
+                            <i class="fas fa-chart-bar"></i>
                             <span> Reports </span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="javascript: void(0);">
+                        <a href="{{ route('staff.weighbill') }}">
                             <i class="mdi mdi-table-settings"></i>
                             <span> Weight Bill </span>
                             {{-- <span class="menu-arrow"></span> --}}
@@ -148,8 +152,8 @@
                     </li>
 
                     <li>
-                        <a href="javascript: void(0);">
-                            <i class="mdi mdi-poll"></i>
+                        <a href="{{ route('staff.profile') }}">
+                            <i class="fa fa-user"></i>
                             <span> Profile </span>
                             {{-- <span class="menu-arrow"></span> --}}
                         </a>
@@ -165,32 +169,56 @@
                     </li>
                 @endif
                 @if (auth()->check() && auth()->user()->user_type === '2')
-                    <li class="menu-title mt-2">More</li>
-
                     <li>
-                        <a href="javascript: void(0);">
-                            <i class="mdi mdi-share-variant"></i>
-                            <span> Multi Level </span>
-                            <span class="menu-arrow"></span>
+                        <a href="{{ route('admin.home') }}">
+                            <i class="fa fa-home"></i>
+                            <span> Dashboard </span>
                         </a>
-                        <ul class="nav-second-level nav" aria-expanded="false">
-                            <li>
-                                <a href="javascript: void(0);">Level 1.1</a>
-                            </li>
-                            <li>
-                                <a href="javascript: void(0);" aria-expanded="false">Level 1.2
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <ul class="nav-third-level nav" aria-expanded="false">
-                                    <li>
-                                        <a href="javascript: void(0);">Level 2.1</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript: void(0);">Level 2.2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.staffs') }}">
+                            <i class="fa fa-users"></i>
+                            <span> Staffs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.orders') }}">
+                            <i class="fa fa-truck"></i>
+                            <span> Orders</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.invoices') }}">
+                            <i class="fa fa-file"></i>
+                            <span>Invoices </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.inventories') }}">
+                            <i class="fa fa-tasks"></i>
+                            <span> Inventories </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.reports') }}">
+                            <i class="fas fa-chart-bar"></i>
+                            <span> Reports </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.profile') }}">
+                            <i class="fa fa-user"></i>
+                            <span> Profile </span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <form action="{{ route('logout') }} " method="post">
+                            <button type="submit">
+                                @csrf
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span> Logout </span>
+                            </button>
+                        </form>
                     </li>
                 @endif
             </ul>

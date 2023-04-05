@@ -10,8 +10,9 @@
                     </div>
                     <div class="cta-one__content">
                         <h3 class="cta-one__title">Do You Have Dirty Clothes?</h3>
-                        <p class="cta-one__number"><a href="tel:+234(702) 610 5981">+234 (702) 610 5981</a></p>
-                        <p class="cta-one__number"><a href="tel:+234(702) 610 5981">+234 (818) 529 8359</a></p>
+                        <p class="cta-one__number"><a href="tel:+234(810)978 7915">+234(810)978 7915</a></p>
+                        <p class="cta-one__number"><a href="tel:+234(704)552 9886">+234(704)552 9886</a></p>
+                        <p class="cta-one__number"><a href="tel:+234(818)529 8359">+234(818)529 8359</a></p>
                     </div>
                     <div class="cta-one__btn-box">
                         <a href="contact.html" class="thm-btn cta-one__btn">Order Now <span

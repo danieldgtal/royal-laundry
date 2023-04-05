@@ -21,7 +21,6 @@ return new class extends Migration
           $table->string('lastname');
           $table->string('gender')->nullable();
           $table->string('email')->unique();
-          $table->string('password');
           $table->timestamps();
 
           // Define foreign key constraints

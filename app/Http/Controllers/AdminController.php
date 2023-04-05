@@ -17,9 +17,33 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('owner.dashboard');
+        return view('admin.home');
     }
 
+    public function profile()
+    {
+      return view('admin.profile');
+    }
+
+    public function inventories()
+    {
+      return view('admin.inventories');
+    }
+
+    public function reports()
+    {
+      return view('admin.reports');
+    }
+
+    public function orders()
+    {
+      return view('admin.orders');
+    }
+
+    public function invoices()
+    {
+      return view('admin.invoices');
+    }
     /**
      * Show the form for creating a new resource.
      *

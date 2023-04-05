@@ -10,6 +10,6 @@
         <!-- end page title -->
 
         {{-- livewire staff component   --}}
-        <livewire:staff.items />
+        <livewire:staff.create-item />
     </div>
 @endsection

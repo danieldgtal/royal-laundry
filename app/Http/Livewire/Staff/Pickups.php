@@ -4,7 +4,9 @@ namespace App\Http\Livewire\Staff;
 
 use App\Models\Customer;
 use App\Models\PickUp;
+use App\Models\Staff;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -54,9 +56,9 @@ class Pickups extends Component
 
   public function render()
   { 
-    
-    $items = PickUp::latest()->get();
-    $items = PickUp::paginate($this->per_page);
+    $user = Auth::id();
+    $staff = Staff::where('staff_id', $user)->first();
+    $items = PickUp::where('branch_id',$staff->branch_id)->latest()->paginate($this->per_page);
 
     return view('livewire.staff.pickups',[
       'items' => $items,

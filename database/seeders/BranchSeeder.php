@@ -18,22 +18,19 @@ class BranchSeeder extends Seeder
     {
       DB::table('branches')->insert([
         [
-          'name' => 'Amuwo Odofin',
-          'email' => 'amuwoodofin@dechoiceroyal.com',
-          'address' => '28 amuwo odofin street',
-          'phone' => '08022873600',
+          'name' => 'Ajah Office',
+          'email' => 'ajahoffice@deroyalchoiceng.com',
+          'address' => '3 Tony Eigbokhan street, Majek Bus-Stop Abijo Lekki-Epe Expressway',
+          'phone' => '08109787915',
         ],
         [
-          'name' => 'Lekki',
-          'email' => 'lekki@dechoiceroyal.com',
-          'address' => '28 lekki street',
-          'phone' => '0809002002',
+          'name' => 'Mainland Office',
+          'email' => 'mainlandoffice@deroyalchoiceng.com',
+          'address' => '344 Durban road beside AMC Hospital Amuwo odofin',
+          'phone' => '07045529886',
         ],
 
       ]);
-          
-      
-
        
     }
 }

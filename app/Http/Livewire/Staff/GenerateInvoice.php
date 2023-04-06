@@ -111,7 +111,7 @@ class GenerateInvoice extends Component
   
     $validatedData = $this->validate([
       'customer_name' => 'required|string',
-      'invoice_type' => 'required|integer|max:1',
+      'invoice_type' => 'required|string',
     ]);
         
     session()->put('invoice_data',[$this->all(), $validatedData]);

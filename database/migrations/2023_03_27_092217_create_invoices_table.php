@@ -18,8 +18,7 @@ return new class extends Migration
             $table->string('invoice_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('branch_id');
-            $table->integer('invoice_type')->default(1);
-            $table->integer('invoice_status')->default(1);
+            $table->string('invoice_type');
             $table->string('customer_name');
             $table->date('order_date');
             $table->date('invoice_date');

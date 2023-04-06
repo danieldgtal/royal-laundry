@@ -70,6 +70,10 @@
                             <label for="total-cost">Total Cost</label>
                             <input type="text" class="form-control" wire:model="total_cost" disabled>
                         </div>
+                        <div class="form-group">
+                            <label for="">Order Note</label>
+                            <textarea rows="3" style="resize: none; width: 100%; height: 100px;" class="form-control" wire:model="order_note"></textarea>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -105,6 +109,7 @@
                                 <label for="item-category">Payment Method</label>
                                 <select id="" class="form-control" wire:model="payment_method">
                                     <option value="">--Payment Method--</option>
+                                    <option value="card">Card</option>
                                     <option value="cash">Cash</option>
                                     <option value="transfer">Transfer</option>
                                 </select>

@@ -1,53 +1,26 @@
 <div class="row">
     <!-- Modal -->
-    {{-- <div class="modal fade" id="newOrderModal" tabindex="-1" role="dialog" aria-labelledby="newOrderModalLabel"
+    <div class="modal fade" id="orderNote" tabindex="-1" role="dialog" aria-labelledby="newOrderModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="newOrderModalLabel">New Order Form</h5>
+                    <h5 class="modal-title" id="newOrderModalLabel">Order Info</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <form>
-                        <div class="row">
-                            <div class="form-group col-6">
-                                <label for="laundryorders">Branch Office</label>
-                                <select name="" id="">
-                                    <option value="">--Select Branch--</option>
-                                    <option value="">Amuwo Odofin</option>
-                                    <option value="">Lekki</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group col-6">
-                                <label for="specialInstructions">Order Date</label>
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
                         <div class="form-group">
-                            <label for="pickupDate">Pick-up Date</label>
-                            <input type="date" class="form-control" id="pickupDate">
-                        </div>
-                        <div class="form-group">
-                            <label for="deliveryDate">Delivery Date</label>
-                            <input type="date" class="form-control" id="deliveryDate">
-                        </div>
-                        <div class="form-group">
-                            <label for="paymentAmount">Amount to be Paid</label>
-                            <input type="number" class="form-control" id="paymentAmount">
+                            <label for="">Order Note</label>
+                            <textarea class="form-control" cols="30" rows="10" wire:model="order_note" disabled></textarea>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit Order</button>
-                </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <div class="container-fluid">
         <div class="row">
@@ -85,6 +58,7 @@
                                 <th>Total Cost</th>
                                 <th>Payment Status</th>
                                 <th>Order Status</th>
+                                <th>Info</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -118,6 +92,11 @@
                                         <td>{{ $order->total_cost }}</td>
                                         <td>{{ $order->payment_status }}</td>
                                         <td>{{ $order->order_status }}</td>
+                                        <td>
+                                            <button type="button" wire:click="orderInfo({{ $order->order_id }})"> <i
+                                                    class="fa fa-eye"></i>
+                                            </button>
+                                        </td>
                                     </tr>
                                 @endforeach
                             @else
@@ -148,3 +127,10 @@
         </div>
     </div>
 </div>
+@push('scripts')
+    <script>
+        window.addEventListener('show-order-info', event => {
+            $('#orderNote').modal('show');
+        });
+    </script>
+@endpush

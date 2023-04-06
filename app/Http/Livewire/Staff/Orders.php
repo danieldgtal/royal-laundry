@@ -2,21 +2,18 @@
 
 namespace App\Http\Livewire\Staff;
 
-use DateTime;
 use App\Models\Order;
 use App\Models\Staff;
 use Livewire\Component;
 use App\Models\Customer;
 use App\Models\Invoice;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Date;
+
 
 class Orders extends Component
 { 
 
   public $per_page = 25;
-  public $order_id, $customer_name, $order_date, $pickup_date, $delivery_date, $payment_status, $order_status, $total_cost;
+  public $order_id, $customer_name, $order_date, $pickup_date, $delivery_date, $payment_status, $order_status, $total_cost, $order_note;
   public $invoice_id, $payment_method;
 
   public function editOrder($id)
@@ -30,6 +27,7 @@ class Orders extends Component
     $this->payment_status = $order->payment_status;
     $this->order_status = $order->order_status;
     $this->total_cost = $order->total_cost;
+    $this->order_note = $order->order_note;
 
   }
 
@@ -40,8 +38,10 @@ class Orders extends Component
       'order_status' => 'required|string|in:processing,pending,completed,cancelled',
       'delivery_date' => 'date|after_or_equal:pickup_date',
       'pickup_date' => 'date|after_or_equal:pickup_date',
+      'order_note' => 'string'
     ]);
 
+    
     $order = Order::where('order_id',$this->order_id)->first();
 
     // Convert the validated date to MySQL date format
@@ -52,8 +52,10 @@ class Orders extends Component
     $order->order_id = $this->order_id;
     $order->order_status = $this->order_status;
     $order->payment_status = $this->payment_status;
+    $order->order_note = $this->order_note;
     $order->delivery_date = date('Y-m-d',strtotime($date_delivery));
     $order->pickup_date = date('Y-m-d', strtotime($date_pickup));
+
     
     $order->save();
 
@@ -79,7 +81,7 @@ class Orders extends Component
     
     //form validation rule
     $this->validate([
-      'payment_method' => 'required|string|in:cash,transfer',
+      'payment_method' => 'required|string|in:cash,transfer,card',
       
     ]);
 
@@ -101,6 +103,7 @@ class Orders extends Component
       $invoice->customer_name = $order->customer_name;
       $invoice->order_date = $order->order_date;
       $invoice->total_cost = $order->total_cost;
+      $invoice->invoice_type = 'standard';
       $invoice->payment_method = $this->payment_method;
       $invoice->date_issued = now();
       $invoice->invoice_date = now();

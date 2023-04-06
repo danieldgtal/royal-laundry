@@ -15,6 +15,21 @@ class UserOrders extends Component
   protected $paginationTheme = 'bootstrap';
 
   public $per_page = 10;
+  public $orderId, $order_note;
+  
+
+  public function orderInfo($id)
+  {
+   
+    $order = Order::where('order_id', $id)->first();
+    
+    $this->orderId = $order->id;
+    $this->order_note = $order->order_note;
+ 
+
+    $this->dispatchBrowserEvent('show-order-info');
+
+  }
 
   public function render()
   {

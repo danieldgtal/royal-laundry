@@ -121,7 +121,6 @@ class ViewGeneratedInvoice extends Component
     $invoice->invoice_date = now();
     $invoice->payment_method = $this->payment_method;
     $invoice->date_issued = now();
-    $invoice->invoice_status = 1;
     $invoice->created_at = now();
     $invoice->updated_at = now();
 
@@ -145,7 +144,7 @@ class ViewGeneratedInvoice extends Component
     // dd('reach here');
     $this->validate([
       'payment_method' => 'required|string',
-      'invoice_type' =>'required|integer',
+      'invoice_type' =>'required|string',
       'customer_name' => 'required|string'
     ]);
 

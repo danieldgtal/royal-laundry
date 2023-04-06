@@ -63,22 +63,6 @@
                                             {{ $invoice->invoice_date }}
                                         </p>
                                         <p>
-                                            <strong>invoice Status:
-                                            </strong>
-                                            <span class="">
-                                                @if ($invoice->invoice_status === 1)
-                                                    {{ 'Standard' }}
-                                                @elseif($invoice->invoice_status === 2)
-                                                    {{ 'Credit' }}
-                                                @elseif($invoice->invoice_status === 3)
-                                                    {{ 'Debit' }}
-                                                @else
-                                                    {{ 'Unknown' }}
-                                                @endif
-
-                                            </span>
-                                        </p>
-                                        <p>
                                             <strong>invoice ID:
                                             </strong>
                                             #{{ $invoice->invoice_id }}

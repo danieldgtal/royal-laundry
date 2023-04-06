@@ -32,18 +32,6 @@
                     <p style="color: #7e8d9f; font-size: 20px">
                         <strong> Invoice ID: {{ $invoice->invoice_id }}</strong>
                     </p>
-
-                    <ul class="list-unstyled">
-                        <li class="text-muted">
-                            To:
-                            <span style="color: #5d9fc5">{{ $customer->firstname . ' ' . $customer->lastname }}</span>
-                        </li>
-                        <li class="text-muted">{{ $customer->address }}</li>
-                        <li class="text-muted">{{ $customer->city . ' ' . $customer->state }}. </li>
-                        <li class="text-muted">
-                            <i class="fas fa-phone"></i> {{ $customer->phone }}
-                        </li>
-                    </ul>
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <p class="h5">Invoice</p>
@@ -56,14 +44,10 @@
                             <i class="fas fa-circle" style="color: #84b0ca"></i>
                             <span class="fw-bold">Creation Date: </span>{{ $invoice->invoice_date }}
                         </li>
-                        <li class="text-muted">
+                        <li class="text-muted d-print-none">
                             <i class="fas fa-circle" style="color: #84b0ca"></i>
-                            <span class="me-1 fw-bold">Payment Status:</span>
-                            @if ($order->payment_status == 'paid')
-                                <span class="badge badge-success">Paid</span>
-                            @else
-                                <span class="badge badge-warning">Unpaid</span>
-                            @endif
+                            <span class="me-1 fw-bold">Invoice Type:</span>
+                            {{ $invoice->invoice_type }}
                         </li>
                     </ul>
                 </div>

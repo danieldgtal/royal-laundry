@@ -31,12 +31,12 @@
                         </a>
                     </li>
 
-                    <li>
+                    {{-- <li>
                         <a href="{{ route('user.notification') }}">
                             <i class="fas fa-bell notification-icon"></i>
                             <span> Notification </span>
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a href="{{ route('user.schedule') }}">
                             <i class="fas fa-calendar-alt"></i>
@@ -112,13 +112,13 @@
                             </ul>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('staff.inventories') }}">
-                            <i class="fa fa-tasks"></i>
-                            <span> Manage Inventory </span>
-                            {{-- <span class="menu-arrow"></span> --}}
-                        </a>
-                    </li>
+                    {{-- <li> --}}
+                    {{-- <a href="{{ route('staff.inventories') }}"> --}}
+                    {{-- <i class="fa fa-tasks"></i> --}}
+                    {{-- <span> Manage Inventory </span> --}}
+                    {{-- <span class="menu-arrow"></span> --}}
+                    {{-- </a> --}}
+                    {{-- </li> --}}
                     <li>
                         <a href="{{ route('staff.customers') }}">
                             <i class="fa fa-users"></i>
@@ -142,15 +142,6 @@
                             <span> Reports </span>
                         </a>
                     </li>
-
-                    <li>
-                        <a href="{{ route('staff.weighbill') }}">
-                            <i class="mdi mdi-table-settings"></i>
-                            <span> Weight Bill </span>
-                            {{-- <span class="menu-arrow"></span> --}}
-                        </a>
-                    </li>
-
                     <li>
                         <a href="{{ route('staff.profile') }}">
                             <i class="fa fa-user"></i>

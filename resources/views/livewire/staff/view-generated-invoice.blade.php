@@ -101,7 +101,6 @@
                             <h3>Total: &#8358;{{ $data['total'] }}</h3>
                         </div>
 
-
                         <ul class="list-unstyled mb-4">
                             <form wire:submit.prevent="invoiceRequest">
                                 <div class="row px-3">
@@ -128,9 +127,9 @@
                                             <label for="">Invoice Type</label>
                                             <select class="form-control" wire:model="invoice_type">
                                                 <option value="">--Invoice Type--</option>
-                                                <option value="1">Standard Invoice</option>
-                                                <option value="2">Credit Invoice</option>
-                                                <option value="3">Debit Invoice</option>
+                                                <option value="standard">Standard</option>
+                                                <option value="credit">Credit</option>
+                                                <option value="debit">Debit</option>
                                             </select>
                                         </div>
                                         @error('invoice_type')

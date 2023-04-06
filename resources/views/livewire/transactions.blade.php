@@ -45,7 +45,11 @@
                                                 <td>{{ $invoice->total_cost }}</td>
                                                 <td>{{ $invoice->order_date }}</td>
                                                 <td>
-                                                    {{ $invoice->branch_id }}
+                                                    @if ($branch = App\Models\Branch::find($invoice->branch_id))
+                                                        {{ $branch->name }}
+                                                    @else
+                                                        Unknown Branch
+                                                    @endif
                                                 </td>
                                                 <td>
                                                     <button class="btn btn-sm btn-dark"

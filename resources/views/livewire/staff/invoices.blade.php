@@ -39,7 +39,6 @@
                                     <th>Date Issued</th>
                                     <th>Invoice Type</th>
                                     <th>Order Date</th>
-                                    <th>Invoice Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -55,24 +54,9 @@
                                             <td>{{ $invoice->payment_method }}</td>
                                             <td>{{ $invoice->date_issued }}</td>
                                             <td>
-                                                @if ($invoice->invoice_type === 1)
-                                                    {{ 'Standard' }}
-                                                @elseif ($invoice->invoice_type === 2)
-                                                    {{ 'Prepaid Invoice' }}
-                                                @elseif ($invoice->invoice_type === 3)
-                                                    {{ 'Debit Invoice' }}
-                                                @else
-                                                    {{ 'Credit Invoice' }}
-                                                @endif
+                                                {{ $invoice->invoice_type }}
                                             </td>
                                             <td>{{ $invoice->order_date }}</td>
-                                            <td>
-                                                @if ($invoice->invoice_status === 1)
-                                                    {{ 'completed' }}
-                                                @else
-                                                    {{ 'cancelled' }}
-                                                @endif
-                                            </td>
                                             <td>
                                                 <div class="dropdown">
                                                     <button class="btn btn-sm btn-dark dropdown-toggle" type="button"

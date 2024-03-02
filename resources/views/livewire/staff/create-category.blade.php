@@ -96,12 +96,12 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-6">
+                    {{-- <div class="col-sm-12 col-md-6">
                         <button class="btn btn-primary waves-effect waves-light float-right" data-toggle="modal"
                             data-target="#addCategoryModal">
                             <i class="fa fa-plus"></i> Add item
                         </button>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="row">
@@ -150,10 +150,7 @@
                                         <td>{{ $category->created_at }}</td>
                                         <td>{{ $category->updated_at }}</td>
                                         <td>
-                                            <button class="fa fa-edit pr-3"
-                                                wire:click="editCategory({{ $category->id }})"></button>
-                                            <button class="fa fa-trash text-danger"
-                                                wire:click.prevent="deleteConfirm({{ $category->id }})"></button>
+                                            N/A
                                         </td>
                                     </tr>
                                 @endforeach

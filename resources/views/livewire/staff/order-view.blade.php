@@ -17,7 +17,7 @@
                                 <h4>DEROYALCHOICELAUNDRY</h4>
                                 <p>3, Tony Eigbokhan Street, Majek Bus-Stop, Abijo Lekki-Epe.
                                     344, Durban Road Besides AMC Hospital, Amuwo-Odofin Lagos.</p>
-                                <p><strong>Mobile:</strong>+234(702) 610 5981, +234(818) 529 8359</p>
+                                <p><strong>Mobile:</strong>+234(818)529 8359, +234(810)978 7915, +234(704)552 9886</p>
                             </div>
                         </div>
                         <hr />

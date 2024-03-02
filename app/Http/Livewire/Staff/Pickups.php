@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
+use PDF;
 
 class Pickups extends Component
 {
@@ -18,7 +19,22 @@ class Pickups extends Component
   public $per_page = 10;
   public $user_id, $pickup_id, $pickup_date, $pickup_status,$pickup_note, $u_pickup_status;
   public $customer_firstname, $customer_lastname,$customer_phone,$customer_city,$customer_address;
+  public $search ='';
 
+  public function exportPickUpPdf()
+  {
+    
+    $data = session('pickupData');
+    // pass the data to the PDF view
+    $view =  view('pdf.pickups', [
+      'data' => $data,
+    ])->render();
+
+    $pdf = PDF::loadHTML($view)->output();
+    return response($pdf,200)->header('Content-Type','application/pdf');
+  }
+
+ 
   public function viewPickUpModal($id)
   {
     $order = PickUp::where('id', $id)->first();
@@ -43,25 +59,49 @@ class Pickups extends Component
 
   public function updatePickupStatus()
   {
-    $order = PickUp::where('pickup_id', $this->pickup_id)->first();
+    $pickup = PickUp::where('pickup_id', $this->pickup_id)->first();
     //run a validation on pickup status to check which integer is coming
-   
-    $order->pickup_status = $this->u_pickup_status;
-    $order->save();
+    
+    $pickup->pickup_status = $this->u_pickup_status;
+ 
+    $pickup->save();
 
-    session()->flash('message','Order Status has been Update Successfully');
+    session()->flash('message','Pickup Status has been Update Successfully');
     $this->dispatchBrowserEvent('close-modal');
   }
 
-
+ 
+  
   public function render()
-  { 
+  {  
     $user = Auth::id();
     $staff = Staff::where('staff_id', $user)->first();
-    $items = PickUp::where('branch_id',$staff->branch_id)->latest()->paginate($this->per_page);
+
+    $items = $this->search 
+    ? PickUp::where(function($query) use ($staff) {
+        $query->where('pickup_id', 'like', '%'.$this->search.'%')
+              ->orWhere('pickup_status', 'like', '%'.$this->search.'%')
+              ->where('branch_id', $staff->branch_id);
+      })
+      ->paginate($this->per_page)
+    : PickUp::where('branch_id', $staff->branch_id)
+      ->orderBy('created_at', 'desc')
+      ->paginate($this->per_page);
+      
+
+    $pickupData = [];
+    foreach($items as $item){
+      $pickupData[] = [
+        'pickup_id' => $item->pickup_id,
+        'user_id' => $item->user_id,
+        'pickup_date' => $item->pickup_date,
+        'pickup_status' => $item->pickup_status,
+      ];
+    }
 
     return view('livewire.staff.pickups',[
       'items' => $items,
+      'pickupData' => $pickupData,
     ]);
   }
 }

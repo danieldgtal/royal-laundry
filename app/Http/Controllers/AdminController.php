@@ -17,33 +17,49 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
+      return view('admin.home');
     }
 
-    public function profile()
+    public function categoriesList()
     {
-      return view('admin.profile');
+      return view('admin.categories');
     }
 
-    public function inventories()
+    public function itemsList()
     {
-      return view('admin.inventories');
+      return view('admin.items');
     }
 
-    public function reports()
+    public function staffs()
     {
-      return view('admin.reports');
+      return view('admin.staffs');
     }
+
 
     public function orders()
     {
       return view('admin.orders');
     }
-
+     
     public function invoices()
     {
       return view('admin.invoices');
     }
+    
+    public function feedbacks()
+    {
+      return view('admin.feedbacks');
+    }
+    
+    public function profile()
+    {
+      return view('admin.profile');
+    }
+
+
+
+   
+  
     /**
      * Show the form for creating a new resource.
      *

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Report;
 use Illuminate\Http\Request;
 
 class StaffController extends Controller
@@ -83,14 +84,9 @@ class StaffController extends Controller
       return view('staff.inventories');
     }
 
-    public function reports()
+    public function feedbacks()
     {
-      return view('staff.reports');
-    }
-
-    public function weighbill()
-    {
-      return view('staff.weighbill');
+      return view('staff.feedbacks');
     }
 
     public function create()

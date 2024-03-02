@@ -19,10 +19,11 @@ class DatabaseSeeder extends Seeder
     {
       
       // LaundryItem::factory(100)->create();
-      $this->call(UsersTableSeeder::class);
+      
       $this->call(BranchSeeder::class);
       $this->call(CategoriesTableSeeder::class);
       $this->call(ItemsTableSeeder::class);
+      $this->call(UsersTableSeeder::class);
       $this->call(StaffSeeder::class);
   
     }

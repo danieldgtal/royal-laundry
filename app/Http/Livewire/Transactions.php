@@ -2,10 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Branch;
-use App\Models\Customer;
 use App\Models\Invoice;
-use App\Models\Order;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
@@ -35,10 +32,9 @@ class Transactions extends Component
     session(['invoice_id' => $invoiceId]);
     redirect()->route('user.order-invoice', );
     
-
   }
 
-
+  
   
   public function render()
   {

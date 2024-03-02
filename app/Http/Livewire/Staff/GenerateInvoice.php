@@ -38,8 +38,8 @@ class GenerateInvoice extends Component
     if (!is_null($this->selected_item)) {
         $item = DB::table('items')->where('id', $this->selected_item)->first();
         if (!is_null($item)) {
-            $this->selected_item_price = $item->price;
-            $this->selected_item_package_unit = $item->package_unit;
+          $this->selected_item_price = $item->discounted_price != 0.00 ? $item->discounted_price: $item->price;
+          $this->selected_item_package_unit = $item->package_unit;
         } else {
             $this->selected_item_price = null;
             $this->selected_item_package_unit = null;

@@ -70,8 +70,6 @@
                             <ul>
                                 <li><a href="{{ route('login') }}">Login</a></li>
                                 <li><a href="{{ route('register') }}">Register</a></li>
-                                <li><a href="#news.html">Blog</a></li>
-                                <li><a href="#testimonials">Testimonials</a></li>
                                 <li><a href="#faq">Faq</a></li>
                             </ul>
                         </li>
@@ -79,18 +77,18 @@
                     </ul>
                 </div>
                 <div class="main-menu-wrapper__search-call">
-                    <div class="main-menu-wrapper__search-box">
-
-                    </div>
                     <div class="main-menu-wrapper__call">
                         <div class="main-menu-wrapper__call-icon">
-                            <span class="icon-phone-call"></span>
+                            <a href="https://wa.me/2348109787915" target="_blank">
+                                <span class="fab fa-whatsapp">
+                                </span>
+                            </a>
                         </div>
                         <div class="main-menu-wrapper__call-number">
                             <p>Call Anytime</p>
-                            <h5><a href="tel:+234(702)6105981">+234(810) 978 7915</a></h5>
-                            <h5><a href="tel:+234(704)5529886">+234(704) 552 9886</a></h5>
-                            <h5><a href="tel:+234(818)5298359">+234(818) 529 8359</a></h5>
+                            <h5><a href="tel:+2348109787915" target="_blank">+234(810) 978 7915</a></h5>
+                            <h5><a href="tel:+2347045529886" target="_blank">+234(704) 552 9886</a></h5>
+                            <h5><a href="tel:+2348185298359" target="_blank">+234(818) 529 8359</a></h5>
                         </div>
                     </div>
                 </div>

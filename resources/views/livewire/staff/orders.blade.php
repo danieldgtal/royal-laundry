@@ -74,6 +74,9 @@
                             <label for="">Order Note</label>
                             <textarea rows="3" style="resize: none; width: 100%; height: 100px;" class="form-control" wire:model="order_note"></textarea>
                         </div>
+                        @error('order_note')
+                            <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                        @enderror
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -143,28 +146,63 @@
             @if (session()->has('message'))
                 <div class="alert alert-success text-center">{{ session('message') }}</div>
             @endif
-
-            <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+            <div id="datatable-buttons_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                 <div class="row">
                     <div class="col-sm-12 col-md-6">
-                        <div class="dataTables_length" id="datatable_length"><label>Show <select
-                                    name="datatable_length" aria-controls="datatable" wire:model="per_page"
+                        <div class="dataTables_length" id="datatable_length">
+                            <label>Show
+                                <select aria-controls="datatable" wire:model="per_page"
                                     class="custom-select custom-select-sm form-control form-control-sm">
                                     <option value="10">10</option>
                                     <option value="25">25</option>
                                     <option value="50">50</option>
                                     <option value="100">100</option>
-                                </select> entries</label></div>
+                                </select>
+                                entries</label>
+                            @error('per_page')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        @php
+                            session(['ordersData' => $ordersData]);
+                        @endphp
+                        <div class="dt-buttons btn-group">
+                            <a href="{{ route('export_orders_pdf') }}" target="_blank" type="button"
+                                class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0"
+                                type="button"><span>PDF</span>
+                            </a>
+                        </div>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <div id="datatable_filter" class="dataTables_filter"><label>Search:<input type="search"
+                        <div id="datatable-buttons_filter" class="dataTables_filter">
+                            <label>Search:<input type="search" wire:model="search"
                                     class="form-control form-control-sm" placeholder=""
-                                    aria-controls="datatable"></label></div>
+                                    aria-controls="datatable-buttons"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-3">
+                    <div class="form-group">
+                        <div class="input-group date" id="fromDatepicker" data-target-input="nearest">
+                            <label for="fromDate" class="pr-2">From: </label>
+                            <input type="date" class="form-control datetimepicker-input"
+                                data-target="#fromDatepicker" required wire:model="fromDate" />
+                        </div>
+                    </div>
+                    <div class="form-group pr-2">
+                        <div class="input-group date" id="toDatepicker" data-target-input="nearest">
+                            <label for="fromDate" class="pl-2 pr-2">To: </label>
+                            <input type="date" class="form-control datetimepicker-input"
+                                data-target="#toDatepicker" name="toDate" required wire:model="toDate" />
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 table-responsive">
-
                         <table class="table">
                             <thead>
                                 <tr>
@@ -223,7 +261,7 @@
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td>No order Found</td>
+                                        <td colspan="7" class="text-center">No order Found</td>
                                     </tr>
                                 @endif
                                 <!-- more rows... -->

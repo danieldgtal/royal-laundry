@@ -21,7 +21,7 @@ class ViewCart extends Component
   public $branch;
   public $order_note;
   public $orderId;
-
+  protected $listeners = ['submitOrder' => 'submitOrderRequest'];
 
   public function mount()
   { 
@@ -37,6 +37,7 @@ class ViewCart extends Component
       $product = Item::findorFail($cartItem->item_id);
       $quantity = $cartItem->quantity;
       $packageUnit = $cartItem->package_unit;
+      $price = $product->discounted_price !=0.00 ? $product->discounted_price : $product->price;
       $itemId = $cartItem->id;
       $category = Category::find( $product->category_id);
     
@@ -47,8 +48,8 @@ class ViewCart extends Component
         'package_unit' => $cartItem->package_unit,
         'category' =>$product->category_id,
         'category_name' => $category->name,
-        'price' => $product->price,
-        'subtotal' =>$product->price * $cartItem->quantity,
+        'price' => $price, //$product->discounted_price != 0.00 ? $product->discounted_price: $product->price,
+        'subtotal' => $price * $cartItem->quantity,
       ];
       
     }
@@ -86,25 +87,17 @@ class ViewCart extends Component
   }
 
 
-  public function submitOrder()
+  public function submitOrderRequest()
   {
     //get user id and carts with userid
     $userId = Auth::user()->id;
    
-    if($this->cartItems->count() === 0){
-      return $this->addError('message', 'Your Cart is Empty');
-    }
-
-    $validatedData = $this->validate([
-      'branch' => 'required|numeric|exists:branches,id',
-    ]);
-
-    $userBranch = Branch::find($validatedData['branch']);
+    $userBranch = $this->branch;
       
     $order = new Order;
-    $order->order_id = $this->orderId = $userBranch->id. $this->generateOrderID();
+    $order->order_id = $this->orderId = $userBranch. $this->generateOrderID();
     $order->user_id = $userId;
-    $order->branch_id = $validatedData['branch'];
+    $order->branch_id = $userBranch;
     $order->order_note = $this->order_note;
 
     $user = User::find($userId);
@@ -121,8 +114,6 @@ class ViewCart extends Component
     // get total price
     $computeCart = $this->computeTotalPrice();
     $order->total_cost = $computeCart['total'];
-
-  
     
     $order->items = json_encode($computeCart['items']);
     
@@ -131,10 +122,25 @@ class ViewCart extends Component
     Session::put('orderId', $order->order_id);
 
     $order->save();
-  
+
+    Cart::where('user_id', auth()->user()->id)->delete();
+
     $this->dispatchBrowserEvent('submit-order-success');
     
-    Cart::where('user_id', auth()->user()->id)->delete();
+  }
+
+  public function orderRequest()
+  {
+    $validatedData = $this->validate([
+      'branch' => 'required|numeric|exists:branches,id',
+    ]);
+    
+    if($this->cartItems->count() === 0){
+      return $this->addError('message', 'Your Cart is Empty');
+    }
+    $this->branch = $validatedData['branch'];
+
+    $this->dispatchBrowserEvent('submit-order-request');
 
   }
 

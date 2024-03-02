@@ -30,11 +30,11 @@ class CustomAuthenticatedSessionController extends AuthenticatedSessionControlle
 
         // Redirect user to a particular route based on their type
         if($userType === '2'){
-          return redirect()->intended('/admin/dashboard');
+          return redirect()->intended('/admin');
         }elseif($userType === '1'){
-          return redirect()->intended('/staff/dashboard');
+          return redirect()->intended('/staff');
         }else {
-          return redirect()->intended('/user/dashboard');
+          return redirect()->intended('/user');
         }
       }
       return back()->withErrors([
@@ -65,11 +65,11 @@ class CustomAuthenticatedSessionController extends AuthenticatedSessionControlle
 
       // Redirect user to a particular route based on their type
       if($userType === '2'){
-        return redirect()->intended('/admin/dashboard');
+        return redirect()->intended('/admin');
       }elseif($userType === '1'){
-        return redirect()->intended('/staff/dashboard');
+        return redirect()->intended('/staff');
       }else {
-        return redirect()->intended('/user/dashboard');
+        return redirect()->intended('/user');
       }
   }
 

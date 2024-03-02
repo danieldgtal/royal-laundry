@@ -44,12 +44,6 @@ class CreateNewUser implements CreatesNewUsers
         ]);
              
         // Create new customer instance
-        $date = DateTime::createFromFormat('d/m/Y',$input['dob']);
-        if($date){
-          $formattedDate = $date->format('Y-m-d');
-        }else{
-          $formattedDate = null;
-        }
        
         $customer = Customer::create([
           'customer_id' => $user->id,
@@ -57,7 +51,7 @@ class CreateNewUser implements CreatesNewUsers
           'lastname' => $input['lastname'],
           'email' => $user->email,
           'phone' =>$user->phone,
-          'dob' => $formattedDate ?? null,
+          'dob' => $input['dob'],
           'address' => $input['address'] ?? null,
           'city' => $input['city'] ?? null,
           'state' => $input['state'] ?? null,

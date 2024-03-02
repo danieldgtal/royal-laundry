@@ -17,7 +17,9 @@ class Home extends Component
   public function mount()
   {
     $user_id = auth()->user()->id; // get auth user
+    
     $staff = Staff::where('staff_id', $user_id)->first(); // get staff
+    // dd($user_id);
     $branch_id = $staff->branch_id; //get branch
     
 

@@ -67,7 +67,7 @@
                                             <td class="align-middle"><strong>{{ $item['quantity'] }}</strong></td>
                                             <td class="align-middle"><strong>{{ $item['package_unit'] }}</strong></td>
                                             <td class="align-middle">
-                                                <strong>&#8358;{{ $item['subtotal'] }}</strong>
+                                                <strong>&#8358;{{ $item['subtotal'] . '.00' }}</strong>
                                             </td>
                                             <td class="align-middle"><button type="button" class="text-dark"
                                                     wire:click="removeFromCart({{ $item['item_id'] }})"><i
@@ -98,7 +98,7 @@
                         <p class="font-italic mb-4">Shipping and additional costs are calculated based
                             on values you have entered.</p>
                         <ul class="list-unstyled mb-4">
-                            <form wire:submit.prevent="submitOrder">
+                            <form wire:submit.prevent="orderRequest">
                                 <li class="d-flex justify-content-between py-3 border-bottom">
                                     <select name="" id="" class="form-control" required
                                         wire:model="branch">
@@ -121,7 +121,7 @@
                                 </li>
                         </ul>
                     </div>
-                    <button type="submit" wire:submit.prevent="submitOrder"
+                    <button type="submit" wire:submit.prevent="orderRequest"
                         class="btn btn-dark rounded-pill py-2 btn-block">Confirm
                         Order</button>
                     </form>
@@ -147,12 +147,22 @@
                 showConfirmButton: false,
                 timer: 3000
             }).then(() => {
-                window.location.href = "{{ route('user.invoice') }}";
+                window.location.href = "{{ route('user.orders') }}";
             });
         });
-
-        // window.addEventListener('show-edit-item-modal', event => {
-        //     $('#editItem').modal('show');
-        // });
+        window.addEventListener('submit-order-request', event => {
+            Swal.fire({
+                title: 'Do you want to submit this order?',
+                showDenyButton: false,
+                showCancelButton: true,
+                confirmButtonText: 'Save',
+                denyButtonText: `Don't save`,
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Livewire.emit('submitOrder')
+                }
+            })
+        })
     </script>
 @endpush

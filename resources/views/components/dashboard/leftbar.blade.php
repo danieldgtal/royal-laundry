@@ -31,16 +31,10 @@
                         </a>
                     </li>
 
-                    {{-- <li>
-                        <a href="{{ route('user.notification') }}">
-                            <i class="fas fa-bell notification-icon"></i>
-                            <span> Notification </span>
-                        </a>
-                    </li> --}}
                     <li>
                         <a href="{{ route('user.schedule') }}">
                             <i class="fas fa-calendar-alt"></i>
-                            <span> Schedule </span>
+                            <span> PickUp </span>
                         </a>
                     </li>
 
@@ -112,13 +106,7 @@
                             </ul>
                         </a>
                     </li>
-                    {{-- <li> --}}
-                    {{-- <a href="{{ route('staff.inventories') }}"> --}}
-                    {{-- <i class="fa fa-tasks"></i> --}}
-                    {{-- <span> Manage Inventory </span> --}}
-                    {{-- <span class="menu-arrow"></span> --}}
-                    {{-- </a> --}}
-                    {{-- </li> --}}
+
                     <li>
                         <a href="{{ route('staff.customers') }}">
                             <i class="fa fa-users"></i>
@@ -137,9 +125,9 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="{{ route('staff.reports') }}">
+                        <a href="{{ route('staff.feedbacks') }}">
                             <i class="fas fa-chart-bar"></i>
-                            <span> Reports </span>
+                            <span> Feedback </span>
                         </a>
                     </li>
                     <li>
@@ -167,6 +155,17 @@
                         </a>
                     </li>
                     <li>
+                        <a href="javascript: void(0);">
+                            <i class="fa fa-list"></i>
+                            <span>Items & Categories</span>
+                            <span class="menu-arrow"></span>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="{{ route('admin.categories') }}">Categories</a></li>
+                                <li><a href="{{ route('admin.items') }}">Items</a></li>
+                            </ul>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('admin.staffs') }}">
                             <i class="fa fa-users"></i>
                             <span> Staffs</span>
@@ -185,15 +184,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.inventories') }}">
-                            <i class="fa fa-tasks"></i>
-                            <span> Inventories </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.reports') }}">
+                        <a href="{{ route('admin.feedbacks') }}">
                             <i class="fas fa-chart-bar"></i>
-                            <span> Reports </span>
+                            <span> Feedback </span>
                         </a>
                     </li>
                     <li>

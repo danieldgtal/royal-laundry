@@ -24,6 +24,8 @@ class ViewGeneratedInvoice extends Component
   public $payment_method;
   public $customer_email;
   public $invoice;
+  public $paid_amount;
+  public $side_note;
 
   protected $listeners = ['submitOrder' => 'submitInvoiceOrder' ];
 
@@ -37,13 +39,23 @@ class ViewGeneratedInvoice extends Component
   {
     
     $invoice_info = Session::get('invoice_id');
-    $this->invoice = $invoice_info;
-    $branch = Branch::where('id', $invoice_info->branch_id)->first();
-    
-    return view('livewire.staff.invoice-view', [
-      'invoice' => $this->invoice,
-      'branch' => $branch,
-    ]);
+
+    if($invoice_info){
+      $this->invoice = $invoice_info;
+      $branch = Branch::where('id', $invoice_info->branch_id)->first();
+
+      return view('livewire.staff.invoice-view', [
+        'invoice' => $this->invoice,
+        'branch' => $branch,
+      ]);
+    }else{
+      $user = auth()->user();
+      if($user->user_type == '1'){
+        return redirect('/staff');
+      }if($user->user_type == '2'){
+        return redirect('/admin');
+      }
+    }    
   }
 
   private function computeTotalPrice()
@@ -55,6 +67,7 @@ class ViewGeneratedInvoice extends Component
       $product = Item::findorFail($cartItem->item_id);
       $quantity = $cartItem->quantity;
       $packageUnit = $cartItem->package_unit;
+      $price = $product->discounted_price !=0.00 ? $product->discounted_price : $product->price;
       $itemId = $cartItem->id;
       $category = Category::find( $product->category_id);
     
@@ -65,8 +78,8 @@ class ViewGeneratedInvoice extends Component
         'package_unit' => $cartItem->package_unit,
         'category' =>$product->category_id,
         'category_name' => $category->name,
-        'price' => $product->price,
-        'subtotal' =>$product->price * $cartItem->quantity,
+        'price' => $price,
+        'subtotal' =>$price * $cartItem->quantity,
       ];
       
     }
@@ -117,18 +130,20 @@ class ViewGeneratedInvoice extends Component
     $invoice->branch_id = $staff->branch_id;
     $invoice->invoice_type = $this->invoice_type;
     $invoice->customer_name = $this->customer_name;
+    $invoice->paid_amount = $this->paid_amount;
     $invoice->order_date = now();
     $invoice->invoice_date = now();
     $invoice->payment_method = $this->payment_method;
     $invoice->date_issued = now();
     $invoice->created_at = now();
     $invoice->updated_at = now();
+    $invoice->side_note = $this->side_note;
 
     // get total price
     $computeCart = $this->computeTotalPrice();
 
     $invoice->total_cost = $computeCart['total'];
-
+    $invoice->balance_amount = $invoice->total_cost - $invoice->paid_amount;
     $invoice->items = json_encode($computeCart['items']);
 
     $invoice->save();
@@ -145,7 +160,8 @@ class ViewGeneratedInvoice extends Component
     $this->validate([
       'payment_method' => 'required|string',
       'invoice_type' =>'required|string',
-      'customer_name' => 'required|string'
+      'customer_name' => 'required|string',
+      'side_note' => 'nullable|string|max:255',
     ]);
 
    
@@ -163,12 +179,12 @@ class ViewGeneratedInvoice extends Component
     $this->cartItems = Cart::where('user_id', Auth::id())->get();
     $cartItems = $this->cartItems;
     $data = $this->computeTotalPrice();
+
     
 
     return view('livewire.staff.view-generated-invoice', [
       'data' => $data,
       'cartItems' => $cartItems,
-      
     ]);
   }
 }

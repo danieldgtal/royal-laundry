@@ -46,6 +46,14 @@
                             <p class="contact-page__text">Thank you for your interest in our laundry services! We'd love
                                 to hear from you and answer any questions you may have. You can reach us using the
                                 contact information below, or by filling out the form at the bottom of this page..</p>
+                            @if (session('success'))
+                                <script>
+                                    alert('{{ session('success') }}');
+                                    // Clear the input fields
+                                    document.getElementById('name').value = '';
+                                    document.getElementById('comment').value = '';
+                                </script>
+                            @endif
                             <div>
                                 <ul class="list-unstyled">
                                     <li>
@@ -85,36 +93,61 @@
                                     exceptional customer service. If you have any questions or concerns about our
                                     services, please don't hesitate to contact us.</p>
                             </div>
-                            <form action="" class="comment-one__form contact-form-validated"
-                                novalidate="novalidate">
+                            <form action="{{ route('report.store') }}" method="post" class="comment-one__form">
+                                @csrf
                                 <div class="row">
                                     <h3 class="mb-3">Contact Form</h3>
                                     <div class="col-xl-6 col-lg-6 col-md-6">
                                         <div class="comment-form__input-box">
-                                            <input type="text" placeholder="Your Name" name="name">
+                                            <input type="text" placeholder="Your Name"
+                                                class="@error('name') is-invalid @enderror" name="name"
+                                                value="{{ old('name') }}" required>
                                         </div>
+                                        @error('name')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6">
                                         <div class="comment-form__input-box">
-                                            <input type="email" placeholder="Email Address" name="email">
+                                            <input type="email" class="@error('email') is-invalid @enderror"
+                                                placeholder="Email Address" name="email" value="{{ old('email') }}"
+                                                required>
                                         </div>
+                                        @error('email')
+                                            <div class="invalid-feedback">{{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6">
                                         <div class="comment-form__input-box">
-                                            <input type="text" placeholder="Phone Number" name="phone">
+                                            <input type="text" class="@error('phone') is-invalid @enderror"
+                                                placeholder="Phone Number" name="phone" value="{{ old('phone') }}"
+                                                required>
                                         </div>
+                                        @error('phone')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6">
                                         <div class="comment-form__input-box">
-                                            <input type="text" placeholder="Subject" name="subject">
+                                            <input type="text" class="@error('subject') is-invalid @enderror"
+                                                placeholder="Subject" name="subject" value="{{ old('subject') }}"
+                                                required>
                                         </div>
+                                        @error('subject')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xl-12">
                                         <div class="comment-form__input-box text-message-box">
-                                            <textarea name="message" placeholder="Write a Comment"></textarea>
+                                            <textarea name="comment" class="@error('comment') is-invalid @enderror" placeholder="Write a Comment"
+                                                value="{{ old('comment') }}" required></textarea>
                                         </div>
+                                        @error('comment')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                         <div class="comment-form__btn-box">
                                             <button type="submit" class="thm-btn comment-form__btn">Send a
                                                 Message<span class="icon-right-arrow"></span></button>

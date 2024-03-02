@@ -20,16 +20,12 @@ class Home extends Component
       ->limit(5)
       ->get();
 
-      
     $this->totalOrders = Order::where('user_id', $userId)->count();
     $this->pendingOrders = Order::where('user_id', $userId, 'pending')->count();
     $this->processingOrders = Order::where('order_status', $userId, 'processing')->count();
     $this->cancelledOrders = Order::where('order_status', $userId, 'cancelled')->count();
   
   }
-
-
-
 
   
   public function render()

@@ -36,8 +36,15 @@
     <script src="{{ mix('/js/app.js') }}" defer></script>
     @livewireStyles
     @livewireScripts
+    <style>
+        @media print {
+            body {
+                width: 80mm;
+                margin: 0mm;
+            }
+        }
+    </style>
 </head>
-
 
 <body>
 

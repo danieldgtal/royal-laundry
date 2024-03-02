@@ -24,7 +24,6 @@
                                 <div class="alert alert-success text-center" id="alert">{{ session('message') }}
                                 </div>
                             @endif
-
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -42,6 +41,9 @@
                                         </th>
                                         <th class="border-0 bg-light">
                                             <div class="py-2 text-uppercase">Sub Total</div>
+                                        </th>
+                                        <th class="border-0 bg-light">
+                                            <div class="py-2 text-uppercase">Total Quantity</div>
                                         </th>
                                         <th class="border-0 bg-light">
                                             <div class="py-2 text-uppercase">Remove</div>
@@ -69,6 +71,8 @@
                                             <td class="align-middle">
                                                 <strong>&#8358;{{ $item['subtotal'] }}</strong>
                                             </td>
+                                            <td class="align-middle">
+                                                <strong>{{ $item['quantity'] * $item['package_unit'] }}</strong></td>
                                             <td class="align-middle"><button type="button" class="text-dark"
                                                     wire:click="removeFromCart({{ $item['item_id'] }})"><i
                                                         class="fa fa-trash"></i></button>
@@ -86,12 +90,11 @@
             </div>
 
             <div class="row py-5 p-4 bg-white rounded shadow-sm">
-                <div class="col-xl-4"></div>
-                <div class="col-xl-8">
+
+                <div class="col-xl-12">
                     <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Order
                         summary </div>
                     <div class="p-4">
-
                         <div class="text-right mt-4">
                             <p>
                                 <b>Shipping: 0.00</b>
@@ -100,6 +103,8 @@
                             <hr>
                             <h3>Total: &#8358;{{ $data['total'] }}</h3>
                         </div>
+
+
 
                         <ul class="list-unstyled mb-4">
                             <form wire:submit.prevent="invoiceRequest">
@@ -150,6 +155,21 @@
                                             <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                    <div class="col-6 float-right">
+                                        <div class="form-group">
+                                            <label for="">Amount Paid</label>
+                                            <input type="number" name="amount_paid" class="form-control"
+                                                wire:model="paid_amount" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 float-right">
+                                        <div class="form-group">
+                                            <label for="">Side Note</label>
+                                            <input type="text" class="form-control"
+                                                placeholder="add a side note for invoice" wire:model="side_note">
+                                        </div>
+                                    </div>
+
                                 </div>
                         </ul>
                     </div>

@@ -32,10 +32,6 @@
         @include('home.partials.services-offers')
         <!--Services One End-->
 
-        <!--Brand One Start-->
-        {{-- @include('home.partials.partners') --}}
-        <!--Brand One End-->
-
         <!--Book One Start-->
         @include('home.partials.discounts')
         <!--Book One End-->
@@ -65,6 +61,8 @@
         <!--Site Footer End-->
     </div>
     <!-- /.page-wrapper -->
+
+    <!-- /Mobile View -->
     <div class="mobile-nav__wrapper">
         <div class="mobile-nav__overlay mobile-nav__toggler"></div>
         <!-- /.mobile-nav__overlay -->
@@ -72,7 +70,7 @@
             <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
 
             <div class="logo-box">
-                <a href="index-2.html" aria-label="logo image"><img src="home/assets/images/resources/logo-2.png"
+                <a href="/" aria-label="logo image"><img src="home/assets/images/resources/logo-1.png"
                         width="155" alt="" /></a>
             </div>
             <!-- /.logo-box -->
@@ -84,20 +82,15 @@
                     <a href="mailto:support@deroyalchoiceng.com">support@deroyalchoiceng.com</a>
                 </li>
                 <li>
+                    <i class="fab fa-whatsapp" href="https://wa.me/2348109787915"></i>
+                    <a href="https://wa.me/2348109787915" target="_blank">+234(810)978-7915</a>
+                </li>
+                <li>
                     <i class="fa fa-phone-alt"></i>
-                    <a href="tel:(702)610-5981">+234(810)978-7915</a>
-                    <a href="tel:(818)529-8359">+234(704)552-9886</a>
-                    <a href="tel:(818)529-8359">+234(818)529-8359</a>
+                    <a href="tel:+2347045529886" target="_blank">+234(704)552-9886</a>
                 </li>
             </ul><!-- /.mobile-nav__contact -->
-            <div class="mobile-nav__top">
-                <div class="mobile-nav__social">
-                    <a href="#" class="fab fa-twitter"></a>
-                    <a href="#" class="fab fa-facebook-square"></a>
-                    <a href="#" class="fab fa-pinterest-p"></a>
-                    <a href="#" class="fab fa-instagram"></a>
-                </div><!-- /.mobile-nav__social -->
-            </div><!-- /.mobile-nav__top -->
+
         </div>
         <!-- /.mobile-nav__content -->
     </div>

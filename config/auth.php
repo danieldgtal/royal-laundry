@@ -39,6 +39,7 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+            'controller' => \App\Http\Controllers\CustomAuthenticatedSessionController::class,
         ],
     ],
 

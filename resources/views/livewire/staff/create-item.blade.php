@@ -186,12 +186,12 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-6">
+                    {{-- <div class="col-sm-12 col-md-6">
                         <button class="btn btn-primary waves-effect waves-light float-right" data-toggle="modal"
                             data-target="#addItemModal">
                             <i class="fa fa-plus"></i> Add item
                         </button>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="row">
@@ -268,10 +268,7 @@
                                         <td>{{ $item->created_at }}</td>
                                         <td>{{ $item->updated_at }}</td>
                                         <td>
-                                            <button class="fa fa-edit pr-3"
-                                                wire:click="editItem({{ $item->id }})"></button>
-                                            <button class="fa fa-trash text-danger"
-                                                wire:click.prevent="deleteConfirm({{ $item->id }})"></button>
+                                            N/A
                                         </td>
                                     </tr>
                                 @endforeach
@@ -288,6 +285,13 @@
             </div>
             <div class="row">
                 <div class="col-sm-12 col-md-5">
+                    <div class="dataTables_info" id="datatable-buttons_info" role="status" aria-live="polite">
+                        Showing {{ $items->firstItem() }} to {{ $items->lastItem() }} of
+                        {{ $items->total() }}
+                        entries
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-7">
                     <div class="mr-0 pl-0">
                         {{ $items->links('vendor.livewire.bootstrap') }}
                     </div>

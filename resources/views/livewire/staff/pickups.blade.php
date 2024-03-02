@@ -14,10 +14,12 @@
                     <form wire:submit.prevent="updatePickupStatus">
                         <div class="text-center">
                             <label for="">Pickup Status</label>
-                            <h5><span wire:model="pickup_status"
-                                    class="badge badge-{{ $pickup_status == 0 ? 'warning' : ($pickup_status == 1 ? 'success' : 'danger') }}">
-                                    {{ $pickup_status == 0 ? 'Pending' : ($pickup_status == 1 ? 'Completed' : 'Cancelled') }}
-                                </span></h5>
+                            <h5>
+                                <span wire:model="pickup_status"
+                                    class="badge {{ $pickup_status == 'pending' ? 'bg-warning' : ($pickup_status == 'completed' ? 'bg-success' : ($pickup_status == 'cancelled' ? 'bg-danger' : 'bg-secondary')) }}">
+                                    {{ $pickup_status == 'pending' ? 'pending' : ($pickup_status == 'completed' ? 'completed' : ($pickup_status == 'cancelled' ? 'cancelled' : 'unknown')) }}
+                                </span>
+                            </h5>
 
                         </div>
                         <div class="form-group row">
@@ -48,7 +50,6 @@
                         <div class="form-group">
                             <label for="serviceType">Pickup Date</label>
                             <input type="text" class="form-control" value="" wire:model="pickup_date" disabled>
-
                         </div>
                         <div class="form-group row">
                             <div class="div col-6">
@@ -88,23 +89,12 @@
             @if (session()->has('message'))
                 <div class="alert alert-success text-center">{{ session('message') }}</div>
             @endif
-
-
             <div id="datatable-buttons_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                <div class="row d-flex justify-content-between">
+                <div class="row">
                     <div class="col-sm-12 col-md-6">
-                        <div class="dataTables_length" id="datatable_length"><label>Show
-                                {{-- <select wire:model="filter_type" name="datatable_length" aria-controls="datatable"
-                                    class="custom-select custom-select-sm form-control form-control-sm">
-                                    <option value="">All</option>
-                                    <option value="today">Today</option>
-                                    <option value="this week">This Week</option>
-                                    <option value="this month">This Month</option>
-                                </select> --}}
-                                {{-- @error('per_page')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror --}}
-                                <select wire:model="per_page" name="datatable_length" aria-controls="datatable"
+                        <div class="dataTables_length" id="datatable_length">
+                            <label>Show
+                                <select aria-controls="datatable" wire:model="per_page"
                                     class="custom-select custom-select-sm form-control form-control-sm">
                                     <option value="10">10</option>
                                     <option value="25">25</option>
@@ -117,30 +107,37 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="d-none  d-md-block col-sm-12 col-md-6">
-                        <div class="dt-buttons btn-group"> <button class="btn btn-secondary buttons-copy buttons-html5"
-                                tabindex="0" aria-controls="datatable-buttons"
-                                type="button"><span>Copy</span></button> <button
-                                class="btn btn-secondary buttons-excel buttons-html5" tabindex="0"
-                                aria-controls="datatable-buttons" type="button"><span>Excel</span></button> <button
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        @php
+                            session(['pickupData' => $pickupData]);
+                        @endphp
+                        <div class="dt-buttons btn-group">
+                            <a href="{{ route('export_pickup_pdf') }}" target="_blank" type="button"
                                 class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0"
-                                aria-controls="datatable-buttons" type="button"><span>PDF</span></button> </div>
+                                type="button"><span>PDF</span>
+                            </a>
+                        </div>
                     </div>
-                    {{-- <div class="col-sm-12 col-md-4">
-                        <div id="datatable-buttons_filter" class="dataTables_filter"><label>Search:<input type="search"
+                    <div class="col-sm-12 col-md-6">
+                        <div id="datatable-buttons_filter" class="dataTables_filter">
+                            <label>Search:<input type="search" wire:model="search"
                                     class="form-control form-control-sm" placeholder=""
-                                    aria-controls="datatable-buttons"></label></div>
-                    </div> --}}
+                                    aria-controls="datatable-buttons"></label>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 table-responsive">
                         <table id="datatable-buttons"
                             class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline"
                             style="
-                                border-collapse: collapse;
-                                border-spacing: 0px;
-                                width: 100%;
-                            "
+                                  border-collapse: collapse;
+                                  border-spacing: 0px;
+                                  width: 100%;
+                              "
                             role="grid" aria-describedby="datatable-buttons_info">
                             <thead>
                                 <tr role="row">
@@ -148,7 +145,10 @@
                                         Pickup ID
                                     </th>
                                     <th>
-                                        Customer Name
+                                        Customer FName
+                                    </th>
+                                    <th>
+                                        Customer LName
                                     </th>
                                     <th>
                                         Pickup Date
@@ -171,16 +171,20 @@
                                             </td>
                                             <td>
                                                 @php
-                                                    $user = DB::table('users')
-                                                        ->select('name')
-                                                        ->where('id', $item->user_id)
+                                                    $customer = DB::table('customers')
+                                                        ->select('firstname', 'lastname')
+                                                        ->where('customer_id', $item->user_id)
                                                         ->first();
                                                 @endphp
-                                                {{ $user->name }}
+                                                {{ $customer->firstname }}
                                             </td>
+                                            <td>{{ $customer->lastname }}</td>
                                             <td>{{ $item->pickup_date }}</td>
                                             <td>
-                                                {{ $item->pickup_status }}
+                                                <span
+                                                    class="badge {{ $item->pickup_status == 'pending' ? 'bg-warning' : ($item->pickup_status == 'completed' ? 'bg-success' : ($item->pickup_status == 'cancelled' ? 'bg-danger' : 'bg-secondary')) }}">
+                                                    {{ $item->pickup_status }}
+                                                </span>
                                             </td>
                                             <td>
                                                 <button class="btn btn-light waves-effect"
@@ -218,6 +222,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 @push('scripts')
     <script>

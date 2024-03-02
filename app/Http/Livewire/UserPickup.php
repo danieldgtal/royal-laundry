@@ -20,11 +20,7 @@ class UserPickup extends Component
   {
     $validatedData = $this->validate([
       'pickup_date' => 'required|date_format:m/d/Y|after_or_equal:today',
-      'pickup_time' =>  [
-        'required',
-        'date_format:H:i',
-        'after_or_equal:' . now()->format('H:i')
-      ],
+      'pickup_time' =>  'required|date_format:H:i',
       'pickup_items' => 'required|string|max:200',
       'pickup_note' => 'required|string|max:150',
       'pickup_branch' => 'required|integer|max:2',

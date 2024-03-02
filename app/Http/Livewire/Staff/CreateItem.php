@@ -5,9 +5,9 @@ namespace App\Http\Livewire\Staff;
 use App\Models\Item;
 use Livewire\Component;
 use App\Models\Category;
-use Carbon\Carbon;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\DB;
+
 
 class CreateItem extends Component
 {
@@ -29,7 +29,7 @@ class CreateItem extends Component
     $this->validateOnly($fields,[
       'item_name' => 'required|regex:/^[a-zA-Z0-9_-]+$/',      'category_id' => 'required|exists:categories,id',
       'item_price' => 'required|numeric|min:0',
-      'item_discounted_price' => 'numeric|min:0',
+      'item_discounted_price' => 'required|numeric|min:0',
       'package_unit' => 'required|numeric|min:1',
     ]);
   
@@ -78,6 +78,7 @@ class CreateItem extends Component
     }
 
   }
+  
 
   public function resetInputs()
   {

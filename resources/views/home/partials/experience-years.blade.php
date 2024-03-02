@@ -64,14 +64,16 @@
                         <a href="" class="thm-btn welcome-one__btn">Discover <span
                                 class="icon-right-arrow"></span></a>
                         <div class="welcome-one__call">
-                            <div class="welcome-one__call-icon">
-                                <span class="icon-telephone"></span>
-                            </div>
+                            <a href="https://wa.me/2348109787915" target="_blank">
+                                <span class="fab fa-whatsapp" style="font-size: 35px;">
+                                </span>
+                            </a>
+
                             <div class="welcome-one__call-content">
-                                <p>Call Us Anytime</p>
-                                <p class="cta-one__number"><a href="tel:+234(810)978 7915">+234(810)978 7915</a></p>
-                                <p class="cta-one__number"><a href="tel:+234(704)552 9886">+234(704)552 9886</a></p>
-                                <p class="cta-one__number"><a href="tel:+234(818)529 8359">+234(818)529 8359</a></p>
+                                <p>Whatsapp</p>
+                                <p class="cta-one__number">
+                                    <a href="tel:+2348109787915" style="color: #183862">+234(810)978 7915</a>
+                                </p>
                             </div>
                         </div>
                     </div>

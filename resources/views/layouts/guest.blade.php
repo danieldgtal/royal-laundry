@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('dashboard/assets/css/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('dashboard/assets/css/favicon.png') }}">
 
     <!-- App css -->
     <link href="{{ asset('dashboard/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"

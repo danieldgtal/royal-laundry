@@ -7,14 +7,18 @@ use App\Models\Staff;
 use Livewire\Component;
 use App\Models\Customer;
 use App\Models\Invoice;
-
+use PDF;
+use Livewire\WithPagination;
 
 class Orders extends Component
 { 
-
+  use WithPagination;
   public $per_page = 25;
   public $order_id, $customer_name, $order_date, $pickup_date, $delivery_date, $payment_status, $order_status, $total_cost, $order_note;
   public $invoice_id, $payment_method;
+  public $orderId;
+  public $search = '';
+  public $fromDate, $toDate;
 
   public function editOrder($id)
   {
@@ -31,6 +35,8 @@ class Orders extends Component
 
   }
 
+ 
+
   public function updateOrder(){
     
     $this->validate([
@@ -38,7 +44,7 @@ class Orders extends Component
       'order_status' => 'required|string|in:processing,pending,completed,cancelled',
       'delivery_date' => 'date|after_or_equal:pickup_date',
       'pickup_date' => 'date|after_or_equal:pickup_date',
-      'order_note' => 'string'
+      'order_note' => 'nullable|string'
     ]);
 
     
@@ -120,7 +126,7 @@ class Orders extends Component
     }   
 
   }
-  public $orderId;
+
 
   public function orderView($orderId)
   {
@@ -138,22 +144,65 @@ class Orders extends Component
 
   }
 
+  public function exportOrderPDF()
+  {
+    $data = session('ordersData');
+    // dd($data);
+    //pass the data to the pdf view
+    $view = view('pdf.orders', [
+      'data' => $data,
+    ])->render();
 
+    $pdf = PDF::loadHTML($view)->output();
+    return response($pdf,200)->header('Content-Type','application/pdf');
+    
+  }
 
   public function render()
   { 
-
     $user_id = auth()->user()->id; // get auth user
-
     $staff = Staff::where('staff_id', $user_id)->first(); // get staff
-    
     $branch_id = $staff->branch_id; //get branch
 
-    $orders = Order::where('branch_id', $branch_id)->paginate($this->per_page); 
+    $orders = $this->search
+      ? Order::where(function($query) use ($staff){
+        $query->where('order_id', 'like','%'.$this->search.'%')
+              ->orWhere('order_status','like', '%'.$this->search. '%')
+              ->orWhere('payment_status','like', '%'.$this->search. '%')
+              ->where('branch_id', $staff->branch_id);
+      })
+      ->paginate($this->per_page)
+      :Order::where('branch_id',$staff->branch_id)
+      ->orderBy('created_at', 'desc')
+      ->paginate($this->per_page);
+
+      if($this->fromDate && $this->toDate){
+        $orderQuery = Order::where('branch_id', $branch_id);
+        $orders = $orderQuery->whereBetween('created_at',[$this->fromDate, $this->toDate])->paginate($this->per_page);
+      }
+
+      $ordersData = [];
+      foreach($orders as $order){
+        $ordersData[] = [
+          'order_id' => $order->order_id,
+          'user_id' => $order->user_id,
+          'branch_id' => $order->branch_id,
+          'customer_name' => $order->customer_name,
+          'order_date' => $order->order_date,
+          'pickup_date' => $order->pickup_date,
+          'delivery_date' => $order->delivery_date,
+          'payment_status' => $order->payment_status,
+          'order_status' => $order->order_status,
+          'total_cost' => $order->total_cost,
+          'order_note' => $order->order_note,
+          'items' => $order->items,
+        ];
+      }
 
     $customers = Customer::all();
     return view('livewire.staff.orders',[
       'orders'=> $orders,
+      'ordersData' =>$ordersData,
     ]);
   }
 }

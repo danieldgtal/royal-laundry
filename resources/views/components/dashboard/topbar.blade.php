@@ -1,5 +1,6 @@
 <div class="navbar-custom">
     <ul class="list-unstyled topnav-menu float-right mb-0">
+
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown"
                 href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -24,7 +25,21 @@
                         <i class="mdi mdi-account-outline"></i>
                         <span>Profile</span>
                     </a>
+                    <a href="javascript:void(0)" class="dropdown-item notify-item">
+                        <i class="mdi mdi-account-outline"></i>
+                        @php
+                            $user_id = auth()->user()->id;
+                            $staff = \App\Models\Staff::where('staff_id', $user_id)->first(); // get staff
+                            $branch_id = $staff->branch_id;
+                            $branch = \App\Models\Branch::where('id', $branch_id)->first();
+                        @endphp
+                        <span>{{ $branch->name }}</span>
+                    </a>
                 @else
+                    <a href="#" class="dropdown-item notify-item">
+                        <i class="fa fa-user"></i>
+                        <span>Admin</span>
+                    </a>
                     <a href="{{ route('admin.profile') }}" class="dropdown-item notify-item">
                         <i class="mdi mdi-account-outline"></i>
                         <span>Profile</span>

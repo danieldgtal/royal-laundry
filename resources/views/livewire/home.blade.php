@@ -23,7 +23,6 @@
               <a href="#" class="btn btn-sm btn-primary waves-effect waves-light float-right">View</a>
               <h6 class="text-muted text-uppercase mt-0">Processing Orders</h6>
               <h3 class="mb-4" data-plugin="counterup">{{ $processingOrders }}</h3>
-
           </div>
       </div>
 
@@ -35,55 +34,11 @@
 
           </div>
       </div>
-
-      {{-- <div class="col-xl-3 col-md-6">
-        <div class="card-box tilebox-two">
-            <a href="#" class="btn btn-sm btn-primary waves-effect waves-light float-right">View</a>
-            <h6 class="text-muted text-uppercase mt-0">Revenue</h6>
-            <h3 class="mb-4"><span data-plugin="counterup">459</span></h3>
-
-        </div>
-    </div> --}}
-
   </div>
-
   <!-- end row -->
-
-
   <div class="row">
-      <div class="col-xl-6">
+      <div class="col-xl-12">
           <div class="card-box">
-              <h4 class="header-title mb-3">Notification</h4>
-
-              <div class="inbox-widget slimscroll" style="max-height: 324px;">
-                  <h5>Coming Soon...</h5>
-                  {{-- <a href="#">
-                      <div class="inbox-item div-hover">
-                          <div class="inbox-item-img"><img src="assets/images/users/avatar-1.jpg" class="rounded-circle"
-                                  alt=""></div>
-                          <p class="inbox-item-author">Chadengle</p>
-                          <p class="inbox-item-text">Hey! there I'm available...</p>
-                          <p class="inbox-item-date">13:40 PM</p>
-                      </div>
-                  </a> --}}
-                  {{-- <a href="#">
-                      <div class="inbox-item div-hover">
-                          <div class="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" class="rounded-circle"
-                                  alt=""></div>
-                          <p class="inbox-item-author">Tomaslau</p>
-                          <p class="inbox-item-text text-truncate">Welcome to Royalchoice Laundry...</p>
-                          <p class="inbox-item-date">13:34 PM</p>
-                      </div>
-                  </a> --}}
-
-              </div>
-
-          </div>
-      </div><!-- end col-->
-
-      <div class="col-xl-6">
-          <div class="card-box">
-
               <h4 class="header-title mb-3">Last 5 Order Summary</h4>
 
               <div class="table-responsive">
